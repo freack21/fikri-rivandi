@@ -50,7 +50,8 @@ export const resumeData = {
       role: "Full Stack Developer",
       company: "PT Digital Decision Indonesia",
       date: "September 2025 - Present",
-      description: "Developing comprehensive full-stack solutions."
+      description: "Developing comprehensive full-stack solutions.",
+      link: "https://digision.id"
     },
     {
       id: 2,
