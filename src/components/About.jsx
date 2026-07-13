@@ -49,17 +49,41 @@ const About = () => {
             </div>
           </div>
 
-          {/* Image */}
-          <div className="w-full md:w-1/2 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-xl h-[500px]">
-              <img 
-                src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop" 
-                alt="Fikri coding" 
-                className="w-full h-full object-cover"
-              />
+          {/* Photo Stack */}
+          <div className="w-full md:w-1/2 relative h-[500px] flex items-center justify-center">
+            <div className="relative w-3/4 h-[400px]">
+              
+              {/* Photo 1 (Bottom) */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white dark:border-gray-800 rotate-[-8deg] translate-x-[-20px] translate-y-[20px] hover:z-30 hover:scale-110 hover:-translate-y-[10px] hover:rotate-[-2deg] transition-all duration-500 cursor-pointer origin-bottom-left">
+                <img 
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" 
+                  alt="IoT and Hardware" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Photo 2 (Middle) */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white dark:border-gray-800 rotate-[6deg] translate-x-[30px] translate-y-[-10px] hover:z-30 hover:scale-110 hover:-translate-y-[20px] hover:rotate-[2deg] transition-all duration-500 cursor-pointer origin-bottom-right z-10">
+                <img 
+                  src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=800&auto=format&fit=crop" 
+                  alt="Development Setup" 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+
+              {/* Photo 3 (Top) */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border-8 border-white dark:border-gray-800 rotate-[-2deg] hover:z-30 hover:scale-110 hover:-translate-y-[30px] hover:rotate-0 transition-all duration-500 cursor-pointer origin-center z-20">
+                <img 
+                  src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop" 
+                  alt="Coding Session" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
             </div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-100 dark:bg-blue-900/30 rounded-full -z-10"></div>
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-gray-200 dark:bg-gray-700/50 rounded-full -z-10 opacity-50"></div>
+            
+            <div className="absolute -bottom-2 -left-2 md:-bottom-10 md:-left-10 w-40 h-40 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-2xl -z-10"></div>
+            <div className="absolute -top-2 -right-2 md:-top-10 md:-right-10 w-32 h-32 bg-gray-200 dark:bg-gray-700/50 rounded-full blur-2xl -z-10 opacity-50"></div>
           </div>
 
         </div>
