@@ -65,7 +65,7 @@ const About = () => {
               {/* Photo 2 (Middle Right) */}
               <div className="photo-stack-item absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white dark:border-gray-800 rotate-[6deg] translate-x-[30px] translate-y-[-10px] hover:translate-x-[50px] hover:translate-y-[-20px] hover:rotate-[2deg] hover:scale-105 hover:z-30 cursor-pointer origin-bottom-right z-10">
                 <img 
-                  src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=800&auto=format&fit=crop" 
+                  src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=800&auto=format&fit=crop" 
                   alt="Development Setup" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
