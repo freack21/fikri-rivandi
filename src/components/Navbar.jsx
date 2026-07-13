@@ -52,13 +52,22 @@ const Navbar = ({ theme, toggleTheme }) => {
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-gray-900 dark:text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Controls */}
+        <div className="md:hidden flex items-center space-x-2">
+          <button 
+            onClick={toggleTheme} 
+            className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+            aria-label="Toggle Dark Mode"
+          >
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button 
+            className="text-gray-900 dark:text-white p-2 -mr-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -75,15 +84,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             {link.name}
           </a>
         ))}
-        <button 
-          onClick={() => {
-            toggleTheme();
-            setIsMobileMenuOpen(false);
-          }} 
-          className="flex items-center space-x-3 text-gray-800 dark:text-gray-200 font-medium"
-        >
-          {theme === 'dark' ? <><Sun size={20} /> <span>Light Mode</span></> : <><Moon size={20} /> <span>Dark Mode</span></>}
-        </button>
+
         <a 
           href="/#contact" 
           className="w-full text-center py-3 bg-primary text-white rounded-full font-medium"

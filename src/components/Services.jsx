@@ -47,7 +47,7 @@ const Services = () => {
                       onClick={() => setActiveIndex(isActive ? -1 : index)}
                       className="w-full py-8 md:py-10 flex items-start justify-between text-left focus:outline-none"
                     >
-                      <h3 className={`text-3xl md:text-5xl font-normal tracking-tight transition-colors duration-300 ${isActive ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white'}`}>
+                      <h3 className={`text-3xl md:text-4xl font-normal tracking-tight transition-colors duration-300 ${isActive ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white'}`}>
                         {service.title}
                       </h3>
                       <div className={`mt-1 transform transition-all duration-500 ${isActive ? 'text-primary translate-x-2 -translate-y-2' : 'text-gray-400 dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white'}`}>
