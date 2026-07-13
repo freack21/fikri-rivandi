@@ -41,7 +41,7 @@ const Services = () => {
                 return (
                   <div 
                     key={service.id}
-                    className="border-b border-gray-200 dark:border-gray-800 group"
+                    className="border-b border-gray-200 dark:border-gray-800 group cursor-pointer"
                   >
                     <button
                       onClick={() => setActiveIndex(isActive ? -1 : index)}
