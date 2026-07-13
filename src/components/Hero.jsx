@@ -1,5 +1,6 @@
 import React from 'react';
 import { resumeData } from '../data';
+import { Send, Download } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -22,14 +23,15 @@ const Hero = () => {
               className="px-8 py-4 bg-primary text-white rounded-full font-medium text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center group"
             >
               Get In Touch 
-              <span className="ml-2 group-hover:translate-x-1 transition-transform">👋</span>
+              <Send size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
             <a 
               href="/cv.pdf" 
               target="_blank"
               rel="noreferrer"
-              className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full font-medium text-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
+              className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full font-medium text-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center group"
             >
+              <Download size={18} className="mr-2 group-hover:-translate-y-1 transition-transform" />
               Download CV
             </a>
           </div>
