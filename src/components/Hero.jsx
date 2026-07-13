@@ -49,7 +49,7 @@ const Hero = () => {
           </div>
           
           {/* Floating badge */}
-          <div className="absolute bottom-10 -left-10 md:left-10 glass-card dark:bg-gray-800/80 dark:border-gray-700 px-6 py-4 rounded-2xl flex items-center space-x-4 animate-bounce" style={{ animationDuration: '3s' }}>
+          {/* <div className="absolute bottom-10 -left-10 md:left-10 glass-card dark:bg-gray-800/80 dark:border-gray-700 px-6 py-4 rounded-2xl flex items-center space-x-4 animate-bounce" style={{ animationDuration: '3s' }}>
             <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/40 text-primary dark:text-blue-400 rounded-full flex items-center justify-center text-xl font-bold">
               +3
             </div>
@@ -57,7 +57,7 @@ const Hero = () => {
               <p className="text-gray-900 dark:text-white font-bold text-sm">Years of</p>
               <p className="text-gray-500 dark:text-gray-400 text-xs">Experience</p>
             </div>
-          </div>
+          </div> */}
         </div>
         
       </div>
