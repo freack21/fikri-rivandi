@@ -9,7 +9,7 @@ export const resumeData = {
     linkedin: "www.linkedin.com/in/fikrivandi",
     github: "www.github.com/freack21",
     instagram: "www.instagram.com/fkrvndii",
-    about: "I'm an Informatics Engineering student with expertise in algorithms and programming, including Java, JavaScript, PHP, and Python. Skilled in web development with HTML, CSS, and JavaScript, complemented by back-end technologies like PHP and NodeJS. Proficient in modern frameworks such as NextJS, Flutter, and Laravel for full-stack development.\n\nPassionate about robotics and IoT, with hands-on experience in Arduino and image processing. Currently advancing knowledge in Machine Learning to create innovative, data-driven solutions. Dedicated to continuous learning and leveraging technology to drive impactful change."
+    about: "I am a Software Engineer with a solid foundation in Informatics Engineering and a strong passion for building scalable, high-performance applications. My expertise spans across full-stack development, utilizing modern technologies such as NextJS, Laravel, and Flutter, backed by a deep understanding of core programming languages like JavaScript, PHP, Python, and Java.\n\nBeyond web and mobile development, I have a deep-rooted interest in robotics and IoT, with hands-on experience in Arduino and image processing. Currently, I am expanding my expertise into Machine Learning to develop innovative, data-driven solutions. I am dedicated to continuous learning and leveraging technology to solve complex problems and drive impactful change."
   },
   skills: [
     "Java", "JavaScript", "HTML5", "CSS3", "Kotlin", "C++", "PHP", "Python", 
