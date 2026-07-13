@@ -17,21 +17,21 @@ const Hero = () => {
             Based in Indonesia. Passionate about robotics, IoT, and building seamless full-stack applications.
           </p>
           
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+          <div className="flex flex-row space-x-3 sm:space-x-4 pt-4">
             <a 
               href="/#contact" 
-              className="px-8 py-4 bg-primary text-white rounded-full font-medium text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center group"
+              className="px-5 py-3 sm:px-8 sm:py-4 bg-primary text-white rounded-full font-medium text-sm sm:text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center group whitespace-nowrap"
             >
               Get In Touch 
-              <Send size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <Send className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform w-4 h-4 sm:w-[18px] sm:h-[18px]" />
             </a>
             <a 
               href="/cv.pdf" 
               target="_blank"
               rel="noreferrer"
-              className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full font-medium text-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center group"
+              className="px-5 py-3 sm:px-8 sm:py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full font-medium text-sm sm:text-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center group whitespace-nowrap"
             >
-              <Download size={18} className="mr-2 group-hover:-translate-y-1 transition-transform" />
+              <Download className="mr-2 group-hover:-translate-y-1 transition-transform w-4 h-4 sm:w-[18px] sm:h-[18px]" />
               Download CV
             </a>
           </div>

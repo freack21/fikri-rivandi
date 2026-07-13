@@ -62,36 +62,36 @@ const Navbar = ({ theme, toggleTheme }) => {
       </div>
 
       {/* Mobile Nav */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-xl border-t border-gray-100 dark:border-gray-800 flex flex-col py-4 px-6 space-y-4">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className="text-gray-800 dark:text-gray-200 font-medium hover:text-primary transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-          <button 
-            onClick={() => {
-              toggleTheme();
-              setIsMobileMenuOpen(false);
-            }} 
-            className="flex items-center space-x-3 text-gray-800 dark:text-gray-200 font-medium"
-          >
-            {theme === 'dark' ? <><Sun size={20} /> <span>Light Mode</span></> : <><Moon size={20} /> <span>Dark Mode</span></>}
-          </button>
+      <div 
+        className={`md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-xl border-t border-gray-100 dark:border-gray-800 flex flex-col py-4 px-6 space-y-4 transition-all duration-300 origin-top ${isMobileMenuOpen ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-0 invisible'}`}
+      >
+        {navLinks.map((link) => (
           <a 
-            href="/#contact" 
-            className="w-full text-center py-3 bg-primary text-white rounded-full font-medium"
+            key={link.name} 
+            href={link.href}
+            className="text-gray-800 dark:text-gray-200 font-medium hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Contact Me
+            {link.name}
           </a>
-        </div>
-      )}
+        ))}
+        <button 
+          onClick={() => {
+            toggleTheme();
+            setIsMobileMenuOpen(false);
+          }} 
+          className="flex items-center space-x-3 text-gray-800 dark:text-gray-200 font-medium"
+        >
+          {theme === 'dark' ? <><Sun size={20} /> <span>Light Mode</span></> : <><Moon size={20} /> <span>Dark Mode</span></>}
+        </button>
+        <a 
+          href="/#contact" 
+          className="w-full text-center py-3 bg-primary text-white rounded-full font-medium"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          Contact Me
+        </a>
+      </div>
     </nav>
   );
 };
