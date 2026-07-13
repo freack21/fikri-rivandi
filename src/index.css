@@ -23,4 +23,12 @@
   .glass-card {
     @apply bg-white/70 dark:bg-gray-800/70 backdrop-blur-md border border-white/20 dark:border-gray-700 shadow-xl;
   }
+  
+  .photo-stack-item {
+    transition: transform 0.5s ease-out, filter 0.5s ease-out, z-index 0s linear 0.5s;
+  }
+  
+  .photo-stack-item:hover {
+    transition: transform 0.5s ease-out, filter 0.5s ease-out, z-index 0s linear 0s;
+  }
 }
