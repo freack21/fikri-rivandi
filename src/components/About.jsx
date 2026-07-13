@@ -51,10 +51,10 @@ const About = () => {
 
           {/* Photo Stack */}
           <div className="w-full md:w-1/2 relative h-[500px] flex items-center justify-center">
-            <div className="relative w-3/4 h-[400px]">
+            <div className="relative w-3/4 h-[400px] group cursor-pointer">
               
-              {/* Photo 1 (Bottom) */}
-              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white dark:border-gray-800 rotate-[-8deg] translate-x-[-20px] translate-y-[20px] hover:z-30 hover:scale-110 hover:-translate-y-[10px] hover:rotate-[-2deg] transition-all duration-500 cursor-pointer origin-bottom-left">
+              {/* Photo 1 (Bottom Left) */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white dark:border-gray-800 rotate-[-8deg] translate-x-[-20px] translate-y-[20px] group-hover:translate-x-[-60px] group-hover:translate-y-[10px] group-hover:rotate-[-15deg] transition-all duration-700 ease-out origin-bottom-left z-0">
                 <img 
                   src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" 
                   alt="IoT and Hardware" 
@@ -62,17 +62,17 @@ const About = () => {
                 />
               </div>
 
-              {/* Photo 2 (Middle) */}
-              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white dark:border-gray-800 rotate-[6deg] translate-x-[30px] translate-y-[-10px] hover:z-30 hover:scale-110 hover:-translate-y-[20px] hover:rotate-[2deg] transition-all duration-500 cursor-pointer origin-bottom-right z-10">
+              {/* Photo 2 (Middle Right) */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white dark:border-gray-800 rotate-[6deg] translate-x-[30px] translate-y-[-10px] group-hover:translate-x-[60px] group-hover:translate-y-[-20px] group-hover:rotate-[15deg] transition-all duration-700 ease-out origin-bottom-right z-10">
                 <img 
                   src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=800&auto=format&fit=crop" 
                   alt="Development Setup" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                 />
               </div>
 
-              {/* Photo 3 (Top) */}
-              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border-8 border-white dark:border-gray-800 rotate-[-2deg] hover:z-30 hover:scale-110 hover:-translate-y-[30px] hover:rotate-0 transition-all duration-500 cursor-pointer origin-center z-20">
+              {/* Photo 3 (Top Center) */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border-8 border-white dark:border-gray-800 rotate-[-2deg] group-hover:translate-y-[-40px] group-hover:scale-105 group-hover:rotate-0 transition-all duration-700 ease-out origin-center z-20">
                 <img 
                   src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop" 
                   alt="Coding Session" 
