@@ -42,7 +42,7 @@ const Hero = () => {
           
           <div className="relative w-72 h-72 md:w-96 md:h-96 xl:w-[450px] xl:h-[450px] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 transform rotate-3 hover:rotate-0 transition-transform duration-500">
             <img 
-              src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?q=80&w=1000&auto=format&fit=crop" 
+              src="/hero.webp" 
               alt={resumeData.personalInfo.name} 
               className="w-full h-full object-cover"
             />
