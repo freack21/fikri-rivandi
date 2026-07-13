@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://refandi.my.id/sitemap.xml
