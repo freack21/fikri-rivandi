@@ -12,10 +12,11 @@
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300;
   }
   
   body {
-    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300;
+    @apply font-sans;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-y: overlay;
