@@ -26,9 +26,12 @@ const Projects = () => {
             const isWide = index === 3;
             
             return (
-              <div 
+              <a 
                 key={project.id} 
-                className={`group relative rounded-3xl overflow-hidden cursor-pointer ${isTall ? 'md:row-span-2' : ''} ${isWide ? 'md:col-span-2' : ''}`}
+                href={project.link || '#'}
+                target={project.link ? "_blank" : "_self"}
+                rel="noreferrer"
+                className={`group relative rounded-3xl overflow-hidden cursor-pointer block ${isTall ? 'md:row-span-2' : ''} ${isWide ? 'md:col-span-2' : ''}`}
                 style={{ height: isTall ? 'auto' : (isWide ? '400px' : '350px') }}
               >
                 <div className="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/40 transition-all duration-300 z-10"></div>
@@ -50,7 +53,7 @@ const Projects = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
