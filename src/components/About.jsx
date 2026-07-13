@@ -19,7 +19,7 @@ const About = () => {
               ))}
             </div>
             
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-6">
+            {/* <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-6">
               <div>
                 <h4 className="text-3xl font-bold text-primary dark:text-blue-400 mb-1">10+</h4>
                 <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">Projects</p>
@@ -32,7 +32,7 @@ const About = () => {
                 <h4 className="text-3xl font-bold text-primary dark:text-blue-400 mb-1">15+</h4>
                 <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">Clients</p>
               </div>
-            </div>
+            </div> */}
             
             <div className="mt-12 pt-12 border-t border-gray-200 dark:border-gray-700">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">Tech Stack & Tools</h3>
