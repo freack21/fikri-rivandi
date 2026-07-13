@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Projects = () => {
   // Only take the first 4 projects for the featured section
-  const featuredProjects = resumeData.projects.slice(0, 4);
+  const featuredProjects = resumeData.projects.slice(0, 3);
 
   return (
     <section id="work" className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
