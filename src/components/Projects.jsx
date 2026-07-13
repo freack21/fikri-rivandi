@@ -8,12 +8,12 @@ const Projects = () => {
   const featuredProjects = resumeData.projects.slice(0, 4);
 
   return (
-    <section id="work" className="py-24 bg-white">
+    <section id="work" className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-6 md:px-12">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">My Featured Work</h2>
-          <p className="text-base text-gray-500">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">My Featured Work</h2>
+          <p className="text-base text-gray-500 dark:text-gray-400">
             A selection of my recent projects showing my expertise in development, IoT, and Machine Learning.
           </p>
         </div>
@@ -56,7 +56,7 @@ const Projects = () => {
         </div>
         
         <div className="mt-16 flex justify-center">
-          <Link to="/works" className="px-8 py-3.5 bg-gray-100 hover:bg-primary hover:text-white text-gray-900 rounded-full font-medium transition-colors flex items-center group">
+          <Link to="/works" className="px-8 py-3.5 bg-gray-100 dark:bg-gray-800 hover:bg-primary dark:hover:bg-primary hover:text-white text-gray-900 dark:text-white rounded-full font-medium transition-colors flex items-center group">
             All Works <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

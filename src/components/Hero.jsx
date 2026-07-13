@@ -7,12 +7,12 @@ const Hero = () => {
       <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between">
         
         <div className="w-full md:w-1/2 flex flex-col items-start space-y-6 z-10 relative">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight">
             Hi, I'm {resumeData.personalInfo.name.split(' ')[0]}. <br className="hidden sm:block" />
             <span className="text-primary">{resumeData.personalInfo.role}</span>
           </h1>
           
-          <p className="text-base md:text-lg text-gray-500 max-w-xl">
+          <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl">
             Based in Indonesia. Passionate about robotics, IoT, and building seamless full-stack applications.
           </p>
           
@@ -28,7 +28,7 @@ const Hero = () => {
               href="/cv.pdf" 
               target="_blank"
               rel="noreferrer"
-              className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium text-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center"
+              className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full font-medium text-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
             >
               Download CV
             </a>
@@ -38,9 +38,9 @@ const Hero = () => {
         {/* Image/Visual Content */}
         <div className="w-full md:w-1/2 mt-16 md:mt-0 relative flex justify-center md:justify-end">
           {/* Abstract Background Element */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 -z-10"></div>
           
-          <div className="relative w-72 h-72 md:w-96 md:h-96 xl:w-[450px] xl:h-[450px] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white transform rotate-3 hover:rotate-0 transition-transform duration-500">
+          <div className="relative w-72 h-72 md:w-96 md:h-96 xl:w-[450px] xl:h-[450px] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 transform rotate-3 hover:rotate-0 transition-transform duration-500">
             <img 
               src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?q=80&w=1000&auto=format&fit=crop" 
               alt={resumeData.personalInfo.name} 
@@ -49,13 +49,13 @@ const Hero = () => {
           </div>
           
           {/* Floating badge */}
-          <div className="absolute bottom-10 -left-10 md:left-10 glass-card px-6 py-4 rounded-2xl flex items-center space-x-4 animate-bounce" style={{ animationDuration: '3s' }}>
-            <div className="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center text-xl font-bold">
+          <div className="absolute bottom-10 -left-10 md:left-10 glass-card dark:bg-gray-800/80 dark:border-gray-700 px-6 py-4 rounded-2xl flex items-center space-x-4 animate-bounce" style={{ animationDuration: '3s' }}>
+            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/40 text-primary dark:text-blue-400 rounded-full flex items-center justify-center text-xl font-bold">
               +3
             </div>
             <div>
-              <p className="text-gray-900 font-bold text-sm">Years of</p>
-              <p className="text-gray-500 text-xs">Experience</p>
+              <p className="text-gray-900 dark:text-white font-bold text-sm">Years of</p>
+              <p className="text-gray-500 dark:text-gray-400 text-xs">Experience</p>
             </div>
           </div>
         </div>

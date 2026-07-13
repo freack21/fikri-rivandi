@@ -3,10 +3,10 @@ import { resumeData } from '../data';
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-gray-900 text-white pt-24 pb-8">
+    <footer id="contact" className="bg-gray-900 dark:bg-black text-white pt-24 pb-8 transition-colors duration-300">
       <div className="container mx-auto px-6 md:px-12">
         
-        <div className="flex justify-between items-end border-b border-gray-800 pb-12 mb-12">
+        <div className="flex justify-between items-end border-b border-gray-800 dark:border-gray-900 pb-12 mb-12">
           <div className="text-sm text-gray-400 font-medium">
             {resumeData.personalInfo.name} <br />
             {resumeData.personalInfo.role}

@@ -11,12 +11,12 @@ const iconMap = {
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-6 md:px-12">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">My Awesome Services</h2>
-          <p className="text-base text-gray-500">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">My Awesome Services</h2>
+          <p className="text-base text-gray-500 dark:text-gray-400">
             With my expertise, you can expect seamless solutions combining robust backend architecture with intuitive, modern interfaces.
           </p>
         </div>
@@ -25,13 +25,13 @@ const Services = () => {
           {resumeData.services.map((service) => (
             <div 
               key={service.id}
-              className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer"
+              className="bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 hover:shadow-2xl hover:border-gray-200 dark:hover:border-gray-700 hover:-translate-y-2 transition-all duration-300 group cursor-pointer"
             >
-              <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-700 mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <div className="w-16 h-16 bg-gray-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center text-gray-700 dark:text-gray-300 mb-6 group-hover:bg-primary group-hover:text-white dark:group-hover:text-white transition-colors duration-300">
                 {iconMap[service.icon]}
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-3">{service.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-sm">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">{service.title}</h3>
+              <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
                 {service.description}
               </p>
             </div>
