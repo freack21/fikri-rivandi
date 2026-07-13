@@ -41,11 +41,11 @@ const Services = () => {
                 return (
                   <div 
                     key={service.id}
-                    className="border-b border-gray-200 dark:border-gray-800 group cursor-pointer"
+                    className="border-b border-gray-200 dark:border-gray-800 group"
                   >
                     <button
                       onClick={() => setActiveIndex(isActive ? -1 : index)}
-                      className="w-full py-8 md:py-10 flex items-start justify-between text-left focus:outline-none"
+                      className="w-full py-8 md:py-10 flex items-start justify-between text-left focus:outline-none cursor-pointer"
                     >
                       <h3 className={`text-2xl md:text-4xl font-normal tracking-tight transition-colors duration-300 ${isActive ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white'}`}>
                         {service.title}
