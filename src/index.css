@@ -25,10 +25,10 @@
   }
   
   .photo-stack-item {
-    transition: transform 0.5s ease-out, filter 0.5s ease-out, z-index 0s linear 0.5s;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s linear 0.5s;
   }
   
   .photo-stack-item:hover {
-    transition: transform 0.5s ease-out, filter 0.5s ease-out, z-index 0s linear 0s;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s linear 0s;
   }
 }
