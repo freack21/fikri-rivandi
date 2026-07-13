@@ -25,7 +25,9 @@ const Hero = () => {
               <span className="ml-2 group-hover:translate-x-1 transition-transform">👋</span>
             </a>
             <a 
-              href="#" 
+              href="/cv.pdf" 
+              target="_blank"
+              rel="noreferrer"
               className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium text-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center"
             >
               Download CV
