@@ -7,7 +7,7 @@ import AllWorks from './pages/AllWorks';
 
 function App() {
   const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || 'light'
+    localStorage.getItem('theme') || 'dark'
   );
 
   useEffect(() => {
