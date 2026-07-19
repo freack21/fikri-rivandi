@@ -42,7 +42,7 @@ const Hero = () => {
           {/* Abstract Background Element */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 -z-10"></div>
           
-          <div className="relative w-72 h-72 md:w-96 md:h-96 xl:w-[450px] xl:h-[450px] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+          <div className="relative w-64 h-64 md:w-80 md:h-80 xl:w-[400px] xl:h-[400px] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 transform rotate-3 hover:rotate-0 transition-transform duration-500">
             <img 
               src="/hero.webp" 
               alt={resumeData.personalInfo.name} 
