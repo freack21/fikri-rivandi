@@ -1,7 +1,7 @@
 export const resumeData = {
   personalInfo: {
     name: "Fikri Rivandi",
-    role: "Software Engineer",
+    role: "Full-Stack Developer",
     company: "digision.id",
     location: "Pekanbaru, Riau, Indonesia",
     phone: "+62-822-8623-0830",
@@ -9,7 +9,7 @@ export const resumeData = {
     linkedin: "www.linkedin.com/in/fikrivandi",
     github: "www.github.com/freack21",
     instagram: "www.instagram.com/fkrvndii",
-    about: "I am a Software Engineer with a solid foundation in Informatics Engineering and a strong passion for building scalable, high-performance applications. My expertise spans across full-stack development, utilizing modern technologies such as NextJS, Laravel, and Flutter, backed by a deep understanding of core programming languages like JavaScript, PHP, Python, and Java.\n\nBeyond web and mobile development, I have a deep-rooted interest in robotics and IoT, with hands-on experience in Arduino and image processing. Currently, I am expanding my expertise into Machine Learning to develop innovative, data-driven solutions. I am dedicated to continuous learning and leveraging technology to solve complex problems and drive impactful change."
+    about: "I am a Full-Stack Developer with a solid foundation in Informatics Engineering and a strong passion for building scalable, high-performance applications. My expertise spans across full-stack development, utilizing modern technologies such as NextJS, Laravel, and Flutter, backed by a deep understanding of core programming languages like JavaScript, PHP, Python, and Java.\n\nBeyond web and mobile development, I have a deep-rooted interest in robotics and IoT, with hands-on experience in Arduino and image processing. Currently, I am expanding my expertise into Machine Learning to develop innovative, data-driven solutions. I am dedicated to continuous learning and leveraging technology to solve complex problems and drive impactful change."
   },
   skills: [
     "Java", "JavaScript", "HTML5", "CSS3", "Kotlin", "C++", "PHP", "Python", 
