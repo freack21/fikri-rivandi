@@ -4,54 +4,61 @@ import { resumeData } from '../data';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 
 const AllWorks = () => {
-  // Scroll to top when the page loads
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const cardColors = ['bg-pink-400', 'bg-cyan-400', 'bg-yellow-300', 'bg-lime-400', 'bg-[#f4f4f0]'];
+
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-32 pb-24 transition-colors duration-300">
-      <div className="container mx-auto px-6 md:px-12 max-w-5xl">
+    <main className="min-h-screen bg-white dark:bg-black pt-32 pb-24 transition-colors duration-300">
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl">
         
-        <div className="mb-16 flex flex-col items-start">
-          <Link to="/" className="flex items-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors font-medium mb-8 group">
-            <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+        <div className="mb-16 flex flex-col items-start border-b-[6px] border-black dark:border-white pb-8">
+          <Link to="/" className="brutal-btn bg-yellow-300 mb-8 flex items-center">
+            <ArrowLeft size={20} className="mr-2" />
             Back to Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">All Works & Projects</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-4 text-lg">A complete archive of things I've built, experimented with, and launched.</p>
+          <h1 className="text-5xl md:text-7xl font-black text-black dark:text-white tracking-tighter uppercase">All Works & Projects</h1>
+          <br/>
+          <p className="font-bold text-black dark:text-white mt-4 text-xl bg-cyan-400 inline-block p-4 brutal-border brutal-shadow-sm">
+            A complete archive of things I've built, experimented with, and launched.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {resumeData.projects.map((project) => (
-            <div 
-              key={project.id} 
-              className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-3xl p-8 hover:shadow-xl hover:border-gray-200 dark:hover:border-gray-600 transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div>
-                <span className="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/40 text-primary dark:text-blue-400 text-xs font-semibold rounded-full mb-4 tracking-wide uppercase">
-                  {project.category}
-                </span>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {resumeData.projects.map((project, index) => {
+             const bgColor = cardColors[index % cardColors.length];
+             
+             return (
+              <div 
+                key={project.id} 
+                className={`brutal-card ${bgColor} dark:bg-gray-800 p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]`}
+              >
+                <div>
+                  <span className="inline-block px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-xs font-black uppercase tracking-wider brutal-border mb-4">
+                    {project.category}
+                  </span>
+                  <h3 className="text-3xl font-black text-black dark:text-white uppercase mb-4 leading-tight">{project.title}</h3>
+                  
+                  <p className="text-black dark:text-gray-300 font-bold leading-relaxed text-base border-l-[3px] border-black dark:border-white pl-3 bg-white/50 dark:bg-black/50 p-2">
+                    A software project demonstrating my skills in {project.category}. Click below to explore the details.
+                  </p>
+                </div>
                 
-                {/* For old projects that are just listed in data, we provide a generic description based on their original HTML structure */}
-                <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
-                  A software project demonstrating my skills in {project.category}. Click below to explore the details.
-                </p>
+                <div className="mt-8 self-start">
+                  <a 
+                    href={project.link || '#'} 
+                    target={project.link ? "_blank" : "_self"} 
+                    rel="noreferrer"
+                    className="brutal-btn bg-white dark:bg-black group-hover:bg-primary transition-colors flex items-center"
+                  >
+                    View Project <ExternalLink size={20} className="ml-2" />
+                  </a>
+                </div>
               </div>
-              
-              <div className="mt-8">
-                <a 
-                  href={project.link || '#'} 
-                  target={project.link ? "_blank" : "_self"} 
-                  rel="noreferrer"
-                  className="inline-flex items-center text-sm font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors group-hover:text-primary dark:group-hover:text-primary cursor-pointer"
-                >
-                  View Project <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
       </div>
@@ -60,3 +67,4 @@ const AllWorks = () => {
 };
 
 export default AllWorks;
+

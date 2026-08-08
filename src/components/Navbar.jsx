@@ -23,46 +23,46 @@ const Navbar = ({ theme, toggleTheme }) => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#f4f4f0] dark:bg-gray-900 border-b-[3px] border-black dark:border-white py-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        <a href="/#home" className="text-xl font-bold tracking-tighter text-gray-900 dark:text-white">
+        <a href="/#home" className="text-2xl font-black tracking-tighter uppercase text-black dark:text-white px-2 py-1 brutal-border bg-white dark:bg-gray-800 brutal-shadow-sm hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[5px_5px_0px_0px_rgba(255,255,255,1)] transition-all">
           {resumeData.personalInfo.name.split(' ')[0]}<span className="text-primary">.</span>
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-8 items-center">
+        <div className="hidden md:flex space-x-4 lg:space-x-8 items-center">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium text-sm transition-colors"
+              className="text-black dark:text-white font-bold uppercase text-sm border-2 border-transparent hover:border-black dark:hover:border-white hover:bg-yellow-300 dark:hover:bg-primary dark:hover:text-black px-3 py-1 transition-all"
             >
               {link.name}
             </a>
           ))}
           <button 
             onClick={toggleTheme} 
-            className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+            className="brutal-border brutal-shadow-sm bg-yellow-300 dark:bg-gray-700 text-black dark:text-white p-2 hover:bg-yellow-400 dark:hover:bg-gray-600 transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[5px_5px_0px_0px_rgba(255,255,255,1)] cursor-pointer flex items-center justify-center"
             aria-label="Toggle Dark Mode"
           >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === 'dark' ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} />}
           </button>
-          <a href="/#contact" className="px-5 py-2.5 bg-primary text-white rounded-full font-medium text-sm hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">
+          <a href="/#contact" className="brutal-btn">
             Contact Me
           </a>
         </div>
 
         {/* Mobile Controls */}
-        <div className="md:hidden flex items-center space-x-2">
+        <div className="md:hidden flex items-center space-x-3">
           <button 
             onClick={toggleTheme} 
-            className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+            className="brutal-border brutal-shadow-sm bg-yellow-300 dark:bg-gray-700 text-black dark:text-white p-2 hover:bg-yellow-400 dark:hover:bg-gray-600 transition-all cursor-pointer"
             aria-label="Toggle Dark Mode"
           >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === 'dark' ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} />}
           </button>
           <button 
-            className="text-gray-900 dark:text-white p-2 -mr-2"
+            className="brutal-border brutal-shadow-sm bg-white dark:bg-gray-800 text-black dark:text-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -72,13 +72,13 @@ const Navbar = ({ theme, toggleTheme }) => {
 
       {/* Mobile Nav */}
       <div 
-        className={`md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-xl border-t border-gray-100 dark:border-gray-800 flex flex-col py-4 px-6 space-y-4 transition-all duration-300 origin-top ${isMobileMenuOpen ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-0 invisible'}`}
+        className={`md:hidden absolute top-full left-0 w-full bg-[#f4f4f0] dark:bg-gray-900 border-b-[3px] border-black dark:border-white flex flex-col py-6 px-6 space-y-4 transition-all duration-300 origin-top shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] ${isMobileMenuOpen ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-0 invisible'}`}
       >
         {navLinks.map((link) => (
           <a 
             key={link.name} 
             href={link.href}
-            className="text-gray-800 dark:text-gray-200 font-medium hover:text-primary transition-colors"
+            className="text-black dark:text-white font-bold uppercase text-lg border-2 border-transparent hover:border-black dark:hover:border-white hover:bg-yellow-300 dark:hover:bg-primary dark:hover:text-black px-4 py-2 transition-all block w-full"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             {link.name}
@@ -87,7 +87,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
         <a 
           href="/#contact" 
-          className="w-full text-center py-3 bg-primary text-white rounded-full font-medium"
+          className="brutal-btn mt-4 w-full text-center"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           Contact Me
@@ -98,3 +98,4 @@ const Navbar = ({ theme, toggleTheme }) => {
 };
 
 export default Navbar;
+

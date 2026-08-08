@@ -4,26 +4,28 @@ import { resumeData } from '../data';
 import { ArrowRight } from 'lucide-react';
 
 const Projects = () => {
-  // Only take the first 4 projects for the featured section
   const featuredProjects = resumeData.projects.slice(0, 3);
+  const cardColors = ['bg-pink-400', 'bg-cyan-400', 'bg-yellow-300'];
 
   return (
-    <section id="work" className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="work" className="py-24 bg-white dark:bg-black transition-colors duration-300 border-t-[4px] border-black dark:border-white">
       <div className="container mx-auto px-6 md:px-12">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">My Featured Work</h2>
-          <p className="text-base text-gray-500 dark:text-gray-400">
-            A selection of my recent projects showing my expertise in development, IoT, and Machine Learning.
-          </p>
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <h2 className="text-5xl md:text-6xl font-black text-black dark:text-white mb-8 tracking-tighter uppercase inline-block border-b-[6px] border-primary pb-1">Featured Work</h2>
+          <br/>
+          <div className="bg-[#f4f4f0] dark:bg-gray-800 p-4 md:p-6 brutal-border brutal-shadow-sm inline-block">
+             <p className="text-lg md:text-xl font-bold text-black dark:text-white">
+               A selection of my recent projects showing my expertise in development, IoT, and Machine Learning.
+             </p>
+          </div>
         </div>
 
-        {/* Masonry-like Grid for Top 4 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Brutalist Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {featuredProjects.map((project, index) => {
-            // Apply different heights/aspect ratios to create a dynamic look like the reference
             const isTall = index === 0;
-            const isWide = index === 3;
+            const bgColor = cardColors[index % cardColors.length];
             
             return (
               <a 
@@ -31,25 +33,30 @@ const Projects = () => {
                 href={project.link || '#'}
                 target={project.link ? "_blank" : "_self"}
                 rel="noreferrer"
-                className={`group relative rounded-3xl overflow-hidden cursor-pointer block ${isTall ? 'md:row-span-2' : ''} ${isWide ? 'md:col-span-2' : ''}`}
-                style={{ height: isTall ? 'auto' : (isWide ? '400px' : '350px') }}
+                className={`group relative brutal-card ${bgColor} cursor-pointer flex flex-col p-0 overflow-hidden brutal-shadow hover:translate-y-1 hover:translate-x-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transition-all ${isTall ? 'md:row-span-2' : ''}`}
+                style={{ minHeight: isTall ? '100%' : '350px' }}
               >
-                <div className="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/40 transition-all duration-300 z-10"></div>
+                {/* Image Section */}
+                <div className={`border-b-[4px] border-black dark:border-white overflow-hidden relative ${isTall ? 'h-72 md:h-3/4' : 'h-64 sm:h-72 md:h-[250px]'}`}>
+                   <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all duration-300 z-10"></div>
+                   <img 
+                     src={project.image} 
+                     alt={project.title} 
+                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                   />
+                </div>
                 
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className={`w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ${isTall ? 'min-h-[500px]' : ''}`}
-                />
-                
-                <div className="absolute bottom-0 left-0 w-full p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs font-medium rounded-full mb-3 tracking-wide uppercase">
-                    {project.category}
-                  </span>
-                  <div className="flex justify-between items-end">
-                    <h3 className="text-xl font-bold text-white drop-shadow-md">{project.title}</h3>
-                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300 shadow-xl">
-                      <ArrowRight size={18} className="text-gray-900" />
+                {/* Content Section */}
+                <div className="p-6 md:p-8 flex-grow flex flex-col justify-between bg-white dark:bg-gray-800">
+                  <div>
+                    <span className="inline-block px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-xs font-black mb-4 uppercase tracking-wider brutal-border">
+                      {project.category}
+                    </span>
+                    <h3 className="text-2xl font-black text-black dark:text-white uppercase leading-tight mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+                  </div>
+                  <div className="self-end mt-6">
+                    <div className="w-14 h-14 brutal-border brutal-shadow-sm bg-yellow-300 flex items-center justify-center transform group-hover:rotate-[-45deg] group-hover:bg-primary transition-all">
+                      <ArrowRight size={28} className="text-black" />
                     </div>
                   </div>
                 </div>
@@ -58,9 +65,9 @@ const Projects = () => {
           })}
         </div>
         
-        <div className="mt-16 flex justify-center">
-          <Link to="/works" className="px-8 py-3.5 bg-gray-100 dark:bg-gray-800 hover:bg-primary dark:hover:bg-primary hover:text-white text-gray-900 dark:text-white rounded-full font-medium transition-colors flex items-center group">
-            All Works <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+        <div className="mt-20 flex justify-center">
+          <Link to="/works" className="brutal-btn group flex items-center">
+            All Works <ArrowRight size={24} className="ml-2 group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>
         
@@ -70,3 +77,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
