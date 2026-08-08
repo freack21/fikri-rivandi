@@ -17,10 +17,10 @@ const Footer = () => {
         </div>
 
         <div className="text-center max-w-4xl mx-auto mb-20">
-          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter uppercase">Let's Work Together</h2>
+          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter uppercase">Let's Connect</h2>
           <div className="inline-block border-[3px] border-black dark:border-white bg-white dark:bg-gray-900 p-6 brutal-shadow-sm mb-12">
             <p className="font-bold text-lg md:text-xl">
-              Together, we can make your vision come to life and leave a lasting impact in the digital realm.
+              I am currently part of digision.id. If you want to discuss technology, collaborations, or just say hi, feel free to reach out!
             </p>
           </div>
           <br />
@@ -28,7 +28,7 @@ const Footer = () => {
             href={`mailto:${resumeData.personalInfo.email}`}
             className="brutal-btn bg-black text-white dark:bg-white dark:text-black text-xl px-12 py-5"
           >
-            Hire Me.
+            Contact Me.
           </a>
         </div>
 

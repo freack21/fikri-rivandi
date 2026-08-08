@@ -1,7 +1,7 @@
 export const resumeData = {
   personalInfo: {
     name: "Fikri Rivandi",
-    role: "Full-Stack Developer",
+    role: "Full-Stack Developer at digision.id",
     company: "digision.id",
     location: "Pekanbaru, Riau, Indonesia",
     phone: "+62-822-8623-0830",
