@@ -17,6 +17,10 @@ const Hero = () => {
             <span className="bg-primary text-white px-2 mt-2 inline-block brutal-shadow-sm border-2 border-black dark:border-white">
               {resumeData.personalInfo.role}
             </span>
+            <br />
+            <span className="text-3xl md:text-4xl lg:text-6xl text-gray-800 dark:text-gray-200 mt-2 inline-block lowercase tracking-tight">
+              at {resumeData.personalInfo.company}
+            </span>
           </h1>
           
           <div className="p-6 bg-white dark:bg-black brutal-border brutal-shadow-sm max-w-xl">

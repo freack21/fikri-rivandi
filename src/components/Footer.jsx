@@ -9,7 +9,8 @@ const Footer = () => {
         <div className="flex justify-between items-end border-b-[4px] border-black dark:border-white pb-12 mb-12">
           <div className="text-lg md:text-xl font-black uppercase">
             {resumeData.personalInfo.name} <br />
-            {resumeData.personalInfo.role}
+            {resumeData.personalInfo.role} <br />
+            <span className="text-base md:text-lg lowercase font-bold tracking-tight">at {resumeData.personalInfo.company}</span>
           </div>
           <div className="text-lg md:text-xl font-black uppercase text-right">
             Based in {resumeData.personalInfo.location.split(',')[0]}
