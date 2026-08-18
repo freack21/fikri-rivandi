@@ -101,24 +101,24 @@ export const resumeData = {
       id: 991,
       title: "ERP Viera Oleh-Oleh",
       category: "digision.id",
-      image: "/projects/viera.svg",
-      description: "Sistem Enterprise Resource Planning modern untuk mengelola inventori, penjualan, dan operasional pusat oleh-oleh terbesar.",
+      image: "https://www.vieraoleholeh.id/wp-content/uploads/2024/07/VIERA-ICON.png",
+      description: "A comprehensive Enterprise Resource Planning system for the largest souvenir center in Pekanbaru, managing inventory, sales, and operations across 4 different outlets.",
       link: "#"
     },
     {
       id: 992,
       title: "ERP TB Alfatih",
       category: "digision.id",
-      image: "/projects/alfatih.svg",
-      description: "Platform manajemen stok dan transaksi cerdas yang didesain khusus untuk efisiensi bisnis ritel toko bangunan.",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO3A31OSS7zxxUP-ZbE3dOtXP-4vJkpTnW0I2guz90CuKOYiIA0dr6jn0&s=10",
+      description: "A smart stock management and transaction platform designed for a major building materials store in Pekanbaru, ensuring seamless operations for their wide-reaching loyal customer base.",
       link: "#"
     },
     {
       id: 993,
       title: "HRIS PTPN4 Regional III",
       category: "Intern at PTPN4 Reg. III",
-      image: "/projects/ptpn4.svg",
-      description: "Sistem Informasi SDM terintegrasi untuk memantau kehadiran, kinerja, dan data kepegawaian berskala enterprise.",
+      image: "https://yt3.googleusercontent.com/d3J6SMmi0ArBjRqi2SKmX120v3eE1OwtWMkfQ4tqAhZnSgkVPuntJZ-t_XAHakBGv56MoE75Uw=s900-c-k-c0x00ffffff-no-rj",
+      description: "An integrated Human Resource Information System designed for HR personnel to manage enterprise-scale employee data in detail—including grades, positions, training, and certifications—to track performance and drive strategic HR decisions.",
       link: "#"
     },
     {

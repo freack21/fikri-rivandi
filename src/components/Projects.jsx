@@ -37,12 +37,12 @@ const Projects = () => {
                 style={{ minHeight: isTall ? '100%' : '350px' }}
               >
                 {/* Image Section */}
-                <div className={`border-b-[4px] border-black dark:border-white overflow-hidden relative ${isTall ? 'h-72 md:h-3/4' : 'h-64 sm:h-72 md:h-[250px]'}`}>
+                <div className={`border-b-[4px] border-black dark:border-white overflow-hidden relative bg-white flex items-center justify-center ${isTall ? 'h-72 md:h-3/4' : 'h-64 sm:h-72 md:h-[250px]'}`}>
                    <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all duration-300 z-10"></div>
                    <img 
                      src={project.image} 
                      alt={project.title} 
-                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                     className={`w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500 ${project.image.includes('http') ? 'object-contain p-8' : 'object-cover'}`}
                    />
                 </div>
                 
