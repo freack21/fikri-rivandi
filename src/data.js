@@ -98,6 +98,27 @@ export const resumeData = {
   ],
   projects: [
     {
+      id: 991,
+      title: "ERP Viera Oleh-Oleh",
+      category: "digision.id",
+      image: "https://placehold.co/600x400/fde047/000000?text=ERP+Viera+Oleh-Oleh",
+      link: "#"
+    },
+    {
+      id: 992,
+      title: "ERP TB Alfatih",
+      category: "digision.id",
+      image: "https://placehold.co/600x400/22d3ee/000000?text=ERP+TB+Alfatih",
+      link: "#"
+    },
+    {
+      id: 993,
+      title: "HRIS PTPN4 Regional III",
+      category: "Intern at PTPN4 Reg. III",
+      image: "https://placehold.co/600x400/a3e635/000000?text=HRIS+PTPN4+Regional+III",
+      link: "#"
+    },
+    {
       id: 1,
       title: "Pekan Raya Fisika IX Web App",
       category: "Full-Stack Web",
