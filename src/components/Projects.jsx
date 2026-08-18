@@ -53,6 +53,11 @@ const Projects = () => {
                       {project.category}
                     </span>
                     <h3 className="text-2xl font-black text-black dark:text-white uppercase leading-tight mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+                    {project.description && (
+                      <p className="text-sm font-bold text-gray-700 dark:text-gray-300 mt-2 line-clamp-3">
+                        {project.description}
+                      </p>
+                    )}
                   </div>
                   <div className="self-end mt-6">
                     <div className="w-14 h-14 brutal-border brutal-shadow-sm bg-yellow-300 flex items-center justify-center transform group-hover:rotate-[-45deg] group-hover:bg-primary transition-all">

@@ -101,21 +101,24 @@ export const resumeData = {
       id: 991,
       title: "ERP Viera Oleh-Oleh",
       category: "digision.id",
-      image: "https://placehold.co/600x400/fde047/000000?text=ERP+Viera+Oleh-Oleh",
+      image: "/projects/viera.svg",
+      description: "Sistem Enterprise Resource Planning modern untuk mengelola inventori, penjualan, dan operasional pusat oleh-oleh terbesar.",
       link: "#"
     },
     {
       id: 992,
       title: "ERP TB Alfatih",
       category: "digision.id",
-      image: "https://placehold.co/600x400/22d3ee/000000?text=ERP+TB+Alfatih",
+      image: "/projects/alfatih.svg",
+      description: "Platform manajemen stok dan transaksi cerdas yang didesain khusus untuk efisiensi bisnis ritel toko bangunan.",
       link: "#"
     },
     {
       id: 993,
       title: "HRIS PTPN4 Regional III",
       category: "Intern at PTPN4 Reg. III",
-      image: "https://placehold.co/600x400/a3e635/000000?text=HRIS+PTPN4+Regional+III",
+      image: "/projects/ptpn4.svg",
+      description: "Sistem Informasi SDM terintegrasi untuk memantau kehadiran, kinerja, dan data kepegawaian berskala enterprise.",
       link: "#"
     },
     {

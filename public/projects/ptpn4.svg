@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#a3e635" />
+  
+  <!-- Brutalist Window/Dashboard -->
+  <rect x="50" y="50" width="500" height="300" fill="#ffffff" stroke="#000000" stroke-width="8" />
+  
+  <!-- Window Header -->
+  <rect x="50" y="50" width="500" height="40" fill="#000000" />
+  <circle cx="70" cy="70" r="6" fill="#FF3366" />
+  <circle cx="90" cy="70" r="6" fill="#fde047" />
+  <circle cx="110" cy="70" r="6" fill="#22d3ee" />
+
+  <!-- Content Grid -->
+  <rect x="80" y="110" width="200" height="100" fill="#FF3366" stroke="#000000" stroke-width="4" />
+  <circle cx="130" cy="160" r="25" fill="#ffffff" stroke="#000000" stroke-width="4" />
+  <rect x="170" y="150" width="80" height="10" fill="#000000" />
+  <rect x="170" y="170" width="60" height="10" fill="#ffffff" />
+  
+  <rect x="320" y="110" width="200" height="100" fill="#22d3ee" stroke="#000000" stroke-width="4" />
+  <circle cx="370" cy="160" r="25" fill="#ffffff" stroke="#000000" stroke-width="4" />
+  <rect x="410" y="150" width="80" height="10" fill="#000000" />
+  <rect x="410" y="170" width="60" height="10" fill="#ffffff" />
+
+  <rect x="80" y="230" width="440" height="90" fill="#fde047" stroke="#000000" stroke-width="4" />
+  <rect x="100" y="250" width="50" height="50" fill="#000000" />
+  <rect x="170" y="260" width="150" height="12" fill="#000000" />
+  <rect x="170" y="280" width="100" height="12" fill="#000000" />
+  <rect x="400" y="260" width="100" height="30" fill="#FF3366" stroke="#000000" stroke-width="4" />
+</svg>

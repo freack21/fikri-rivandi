@@ -42,7 +42,7 @@ const AllWorks = () => {
                   <h3 className="text-3xl font-black text-black dark:text-white uppercase mb-4 leading-tight">{project.title}</h3>
                   
                   <p className="text-black dark:text-gray-300 font-bold leading-relaxed text-base border-l-[3px] border-black dark:border-white pl-3 bg-white/50 dark:bg-black/50 p-2">
-                    A software project demonstrating my skills in {project.category}. Click below to explore the details.
+                    {project.description || `A software project demonstrating my skills in ${project.category}. Click below to explore the details.`}
                   </p>
                 </div>
                 
