@@ -116,7 +116,7 @@ export const resumeData = {
     {
       id: 3,
       title: "Robotics Contest (KRSBI-B)",
-      description: "Wheeled soccer robot developed for the Indonesian Robot Contest in the KRSBI-B division.",
+      description: "Autonomous wheeled soccer robot built for the KRSBI Beroda division of Kontes Robot Indonesia (KRI), where teams of robots play football under rules adapted from the RoboCup Middle Size League.",
       category: "IoT & Robotics",
       image: "/projects/krsbib.webp",
       link: "https://kontesrobotindonesia.id/index.html",
@@ -124,7 +124,7 @@ export const resumeData = {
     {
       id: 4,
       title: "BUMN Enterprise Project",
-      description: "Real-world project delivered during an IT internship at PT Perkebunan Nusantara IV (Persero), a state-owned enterprise.",
+      description: "Helpdesk ticketing system for PT Perkebunan Nusantara IV Regional 3, a state-owned enterprise, built with Laravel and Livewire. Features ticket tracking with priorities and technician assignment, category and user management, reports, feedback ratings, and web plus WhatsApp notifications through a Node.js service.",
       category: "Software Development",
       image: "/projects/ptpn.webp",
       link: "https://www.linkedin.com/posts/fikrivandi_internshipexperience-mbkm-itinternship-activity-7345382136796876800-fl3I?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2PERgBpOQWPHoutqrTPfHZ6ctpLuoQwNU",
