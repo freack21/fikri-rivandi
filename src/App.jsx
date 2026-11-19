@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import AllWorks from './pages/AllWorks';
+import WalkingCat from './components/WalkingCat';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -43,6 +44,7 @@ function App() {
           <Route path="/works" element={<AllWorks />} />
         </Routes>
         <Footer />
+        <WalkingCat />
       </div>
     </Router>
   );

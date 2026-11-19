@@ -74,3 +74,108 @@
     transition: all 0.2s ease-out;
   }
 }
+
+/* ---------- Walking cat ---------- */
+.cat-leg,
+.cat-tail,
+.cat-tail-curl,
+.cat-paw,
+.cat-head,
+.cat-eye,
+.cat-body,
+.cat-breathe,
+.cat-stretch,
+.cat-walk {
+  transform-box: fill-box;
+}
+
+.cat-leg { transform-origin: 50% 8%; }
+.cat-walk .cat-leg-a { animation: cat-leg-swing 0.45s ease-in-out infinite; }
+.cat-walk .cat-leg-b { animation: cat-leg-swing 0.45s ease-in-out infinite reverse; }
+.cat-walk .cat-body { animation: cat-bob 0.225s ease-in-out infinite alternate; }
+.cat-walk .cat-head { animation: cat-bob 0.225s ease-in-out infinite alternate; }
+
+.cat-tail { transform-origin: 100% 100%; animation: cat-tail-wag 1.6s ease-in-out infinite; }
+.cat-tail-curl { transform-origin: 100% 0%; animation: cat-tail-flick 2.4s ease-in-out infinite; }
+.cat-eye { transform-origin: 50% 50%; animation: cat-blink 4s infinite; }
+
+.cat-stretch { transform-origin: 30% 100%; animation: cat-stretch 2.4s ease-in-out forwards; }
+
+.cat-paw { transform-origin: 50% 10%; }
+.cat-groom .cat-paw { animation: cat-groom-paw 0.6s ease-in-out infinite alternate; }
+.cat-groom .cat-head { animation: cat-groom-head 0.6s ease-in-out infinite alternate; }
+
+.cat-breathe { transform-origin: 50% 100%; animation: cat-breathe 2.8s ease-in-out infinite; }
+
+.cat-jump { animation: cat-jump 0.5s cubic-bezier(0.3, 0.7, 0.4, 1); }
+.cat-bubble { animation: cat-pop 0.25s ease-out; }
+
+.cat-zzz span {
+  position: absolute;
+  opacity: 0;
+  animation: cat-zzz 2.4s ease-in infinite;
+}
+.cat-zzz span:nth-child(2) { animation-delay: 0.8s; font-size: 1.15em; }
+.cat-zzz span:nth-child(3) { animation-delay: 1.6s; font-size: 1.35em; }
+
+@keyframes cat-leg-swing {
+  from { transform: rotate(24deg); }
+  to { transform: rotate(-24deg); }
+}
+@keyframes cat-bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-2px); }
+}
+@keyframes cat-tail-wag {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(10deg); }
+}
+@keyframes cat-tail-flick {
+  0%, 70%, 100% { transform: rotate(0deg); }
+  80% { transform: rotate(-14deg); }
+  90% { transform: rotate(6deg); }
+}
+@keyframes cat-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+@keyframes cat-stretch {
+  0% { transform: rotate(0deg); }
+  35%, 70% { transform: rotate(9deg) scaleX(1.08); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes cat-groom-paw {
+  from { transform: translate(4px, -6px) rotate(-150deg); }
+  to { transform: translate(6px, -10px) rotate(-170deg); }
+}
+@keyframes cat-groom-head {
+  from { transform: rotate(10deg); }
+  to { transform: rotate(18deg); }
+}
+@keyframes cat-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.06); }
+}
+@keyframes cat-jump {
+  0% { transform: translateY(0) scale(1, 1); }
+  20% { transform: translateY(0) scale(1.08, 0.9); }
+  55% { transform: translateY(-34px) scale(0.95, 1.06); }
+  85% { transform: translateY(0) scale(1.06, 0.94); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes cat-pop {
+  from { transform: translate(-50%, 6px) scale(0.6); opacity: 0; }
+  to { transform: translate(-50%, 0) scale(1); opacity: 1; }
+}
+@keyframes cat-zzz {
+  0% { transform: translate(0, 0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(14px, -30px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cat-leg, .cat-tail, .cat-tail-curl, .cat-paw, .cat-head, .cat-eye,
+  .cat-body, .cat-breathe, .cat-stretch, .cat-jump, .cat-bubble, .cat-zzz span {
+    animation: none !important;
+  }
+}
