@@ -100,6 +100,7 @@ export const resumeData = {
     {
       id: 1,
       title: "Pekan Raya Fisika IX Web App",
+      description: "Web application for HIMAFI Universitas Riau's 'Pekan Raya Fisika IX' event, including a landing page, CBT system, and admin dashboard.",
       category: "Full-Stack Web",
       image: "/projects/prfix.webp",
       link: "https://www.linkedin.com/posts/fikrivandi_webdevelopment-php-javascript-activity-7283396243727294464-0brN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2PERgBpOQWPHoutqrTPfHZ6ctpLuoQwNU"
@@ -107,6 +108,7 @@ export const resumeData = {
     {
       id: 2,
       title: "Bangkit Capstone Project",
+      description: "DiaBite, the Bangkit Academy 2024 machine learning capstone project built as a team.",
       category: "Machine Learning",
       image: "/projects/capstone.webp",
       link: "https://github.com/DiaBite-Bangkit-2024",
@@ -114,6 +116,7 @@ export const resumeData = {
     {
       id: 3,
       title: "Robotics Contest (KRSBI-B)",
+      description: "Wheeled soccer robot developed for the Indonesian Robot Contest in the KRSBI-B division.",
       category: "IoT & Robotics",
       image: "/projects/krsbib.webp",
       link: "https://kontesrobotindonesia.id/index.html",
@@ -121,6 +124,7 @@ export const resumeData = {
     {
       id: 4,
       title: "BUMN Enterprise Project",
+      description: "Real-world project delivered during an IT internship at PT Perkebunan Nusantara IV (Persero), a state-owned enterprise.",
       category: "Software Development",
       image: "/projects/ptpn.webp",
       link: "https://www.linkedin.com/posts/fikrivandi_internshipexperience-mbkm-itinternship-activity-7345382136796876800-fl3I?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2PERgBpOQWPHoutqrTPfHZ6ctpLuoQwNU",
@@ -128,6 +132,7 @@ export const resumeData = {
     {
       id: 5,
       title: "TodoApp",
+      description: "Simple task management web app built with HTML, CSS, and VueJS.",
       category: "HTML, CSS, VueJS",
       image: "https://placehold.co/600x400/e2e8f0/0f172a?text=TodoApp",
       link: "https://todoapp-lake-three.vercel.app/"
@@ -135,6 +140,7 @@ export const resumeData = {
     {
       id: 6,
       title: "SnakeJS",
+      description: "Classic snake game playable in the browser, written in plain JavaScript.",
       category: "HTML, JS",
       image: "https://placehold.co/600x400/2563eb/ffffff?text=SnakeJS",
       link: "https://freack21-snakejs.vercel.app/"
@@ -142,6 +148,7 @@ export const resumeData = {
     {
       id: 7,
       title: "Toko Winda Tenun Olshop",
+      description: "Online shop mobile app for Toko Winda Tenun, built with Flutter and Firebase and published on Google Play.",
       category: "Flutter, Firebase",
       image: "https://placehold.co/600x400/0f172a/ffffff?text=Toko+Winda+Tenun",
       link: "https://play.google.com/store/apps/details?id=com.tokowindatenun.frontend"
@@ -149,6 +156,7 @@ export const resumeData = {
     {
       id: 8,
       title: "whatsauto.js",
+      description: "Node.js library written in TypeScript for automating WhatsApp, published on npm.",
       category: "NodeJS, TypeScript",
       image: "https://placehold.co/600x400/f8fafc/2563eb?text=whatsauto.js",
       link: "https://www.npmjs.com/package/whatsauto.js"
@@ -156,6 +164,7 @@ export const resumeData = {
     {
       id: 9,
       title: "proxy-server",
+      description: "Lightweight proxy server built with Node.js.",
       category: "NodeJS",
       image: "https://placehold.co/600x400/e2e8f0/0f172a?text=proxy-server",
       link: "https://github.com/freack21/proxy-server"
@@ -163,6 +172,7 @@ export const resumeData = {
     {
       id: 10,
       title: "Olist E-Commerce Dashboard",
+      description: "Data analysis and dashboard project on the Olist Brazilian e-commerce dataset.",
       category: "NodeJS",
       image: "https://placehold.co/600x400/2563eb/ffffff?text=Olist+Dashboard",
       link: "https://github.com/freack21/data_analyst_submission"
@@ -170,6 +180,7 @@ export const resumeData = {
     {
       id: 11,
       title: "DragCycle",
+      description: "Project written in Java.",
       category: "Java",
       image: "https://placehold.co/600x400/0f172a/ffffff?text=DragCycle",
       link: "https://github.com/freack21/dragcycle"

@@ -34,9 +34,8 @@ const AllWorks = () => {
                 </span>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h3>
                 
-                {/* For old projects that are just listed in data, we provide a generic description based on their original HTML structure */}
                 <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
-                  A software project demonstrating my skills in {project.category}. Click below to explore the details.
+                  {project.description}
                 </p>
               </div>
               
