@@ -179,3 +179,12 @@
     animation: none !important;
   }
 }
+
+/* ---------- 3D workspace frame ---------- */
+.workspace-frame {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.18) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+.dark .workspace-frame {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1.5px, transparent 1.5px);
+}

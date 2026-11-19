@@ -8,6 +8,7 @@ Personal portfolio website for Fikri Rivandi, live at [refandi.my.id](https://re
 - [Vite 8](https://vite.dev/)
 - [Tailwind CSS 4](https://tailwindcss.com/) via `@tailwindcss/vite`
 - [lucide-react](https://lucide.dev/) icons
+- [three.js](https://threejs.org/) for the 3D workspace illustration
 - [Oxlint](https://oxc.rs/) for linting
 
 ## Getting Started
@@ -30,7 +31,8 @@ src/
   data.js          All portfolio content (profile, skills, services, experience, projects)
   App.jsx          Router and light/dark theme handling
   pages/           Home (/) and AllWorks (/works)
-  components/      Page sections: Navbar, Hero, About, Services, Experience, Projects, Footer
+  components/      Page sections (Navbar, Hero, About, ...), WalkingCat, WorkspaceScene
+  three/           three.js workspace illustration, lazy-loaded by WorkspaceScene
   index.css        Tailwind setup, theme tokens, base styles
 ```
 

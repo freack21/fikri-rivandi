@@ -1,5 +1,6 @@
 import React from 'react';
 import { resumeData } from '../data';
+import WorkspaceScene from './WorkspaceScene';
 
 const About = () => {
   const paragraphs = resumeData.personalInfo.about.split('\n\n');
@@ -40,37 +41,20 @@ const About = () => {
             </div>
           </div>
 
-          {/* Photo Stack */}
-          <div className="w-full md:w-1/2 relative min-h-[500px] flex items-center justify-center mt-10 md:mt-0">
-            <div className="relative w-full h-[350px] sm:h-[450px] max-w-md mx-auto">
-              
-              {/* Photo 1 (Bottom Left) */}
-              <div className="absolute inset-0 brutal-border brutal-shadow bg-pink-400 rotate-[-8deg] translate-x-[-20px] translate-y-[20px] hover:translate-x-[-30px] hover:translate-y-[10px] hover:rotate-[-4deg] transition-all duration-300 z-0 p-2 cursor-pointer">
-                <img 
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" 
-                  alt="IoT and Hardware" 
-                  className="w-full h-full object-cover brutal-border grayscale hover:grayscale-0 transition-all duration-500"
-                />
+          {/* 3D Workspace */}
+          <div className="w-full md:w-1/2 relative flex items-center justify-center mt-10 md:mt-0">
+            <div className="relative w-full max-w-xl mx-auto">
+              <div className="absolute inset-0 bg-pink-400 brutal-border translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6"></div>
+              <div className="workspace-frame relative brutal-border brutal-shadow bg-cyan-300 dark:bg-gray-800 aspect-[4/3] overflow-hidden">
+                <WorkspaceScene className="absolute inset-0" />
+                <span className="absolute top-3 left-3 bg-yellow-300 text-black brutal-border px-3 py-1 text-xs font-black uppercase tracking-widest pointer-events-none">
+                  ~/workspace
+                </span>
+                <span className="absolute bottom-3 right-3 bg-white text-black brutal-border px-3 py-1 text-xs font-black uppercase tracking-widest flex items-center gap-2 pointer-events-none">
+                  <span className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse"></span>
+                  Live coding
+                </span>
               </div>
-
-              {/* Photo 2 (Middle Right) */}
-              <div className="absolute inset-0 brutal-border brutal-shadow bg-cyan-400 rotate-[6deg] translate-x-[30px] translate-y-[-10px] hover:translate-x-[40px] hover:translate-y-[-20px] hover:rotate-[2deg] transition-all duration-300 z-10 p-2 cursor-pointer">
-                <img 
-                  src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=800&auto=format&fit=crop" 
-                  alt="Development Setup" 
-                  className="w-full h-full object-cover brutal-border grayscale hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-
-              {/* Photo 3 (Top Center) */}
-              <div className="absolute inset-0 brutal-border brutal-shadow bg-yellow-300 rotate-[-2deg] hover:translate-y-[-10px] hover:rotate-0 transition-all duration-300 z-20 p-2 cursor-pointer">
-                <img 
-                  src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop" 
-                  alt="Coding Session" 
-                  className="w-full h-full object-cover brutal-border transition-all duration-500"
-                />
-              </div>
-
             </div>
           </div>
 
