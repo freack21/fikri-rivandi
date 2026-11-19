@@ -116,7 +116,7 @@ export const resumeData = {
     {
       id: 3,
       title: "Robotics Contest (KRSBI-B)",
-      description: "Autonomous wheeled soccer robot built for the KRSBI Beroda division of Kontes Robot Indonesia (KRI), where teams of robots play football under rules adapted from the RoboCup Middle Size League.",
+      description: "Autonomous wheeled soccer robot for the KRSBI Beroda division of Kontes Robot Indonesia (KRI) 2024, a robot football contest adapted from the RoboCup Middle Size League. Served as the vision and control programmer.",
       category: "IoT & Robotics",
       image: "/projects/krsbib.webp",
       link: "https://kontesrobotindonesia.id/index.html",
@@ -124,7 +124,7 @@ export const resumeData = {
     {
       id: 4,
       title: "BUMN Enterprise Project",
-      description: "Helpdesk ticketing system for PT Perkebunan Nusantara IV Regional 3, a state-owned enterprise, built with Laravel and Livewire. Features ticket tracking with priorities and technician assignment, category and user management, reports, feedback ratings, and web plus WhatsApp notifications through a Node.js service.",
+      description: "Real-world project delivered during an IT internship at PT Perkebunan Nusantara IV (Persero), a state-owned enterprise.",
       category: "Software Development",
       image: "/projects/ptpn.webp",
       link: "https://www.linkedin.com/posts/fikrivandi_internshipexperience-mbkm-itinternship-activity-7345382136796876800-fl3I?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2PERgBpOQWPHoutqrTPfHZ6ctpLuoQwNU",
@@ -184,6 +184,14 @@ export const resumeData = {
       category: "Java, Swing",
       image: "https://placehold.co/600x400/0f172a/ffffff?text=DragCycle",
       link: "https://github.com/freack21/dragcycle"
+    },
+    {
+      id: 12,
+      title: "PTPN IV Helpdesk Ticketing",
+      description: "IT helpdesk ticketing system for PT Perkebunan Nusantara IV Regional 3, a state-owned enterprise, built with Laravel and Livewire. Features ticket tracking with priorities and technician assignment, category and user management, reports, feedback ratings, and web plus WhatsApp notifications through a Node.js service.",
+      category: "Laravel, Livewire",
+      image: "https://placehold.co/600x400/2563eb/ffffff?text=Helpdesk+Ticketing",
+      link: null
     }
   ]
 };
