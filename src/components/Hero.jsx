@@ -57,7 +57,7 @@ const Hero = () => {
           
           <div className="relative w-64 h-64 md:w-80 md:h-80 xl:w-[450px] xl:h-[450px] bg-white dark:bg-gray-800 brutal-border brutal-shadow transform -rotate-3 hover:rotate-0 transition-transform duration-300 z-10 p-2">
             <img 
-              src="/hero.webp" 
+              src="/hero.webp?v=2" 
               alt={resumeData.personalInfo.name} 
               className="w-full h-full object-cover brutal-border grayscale hover:grayscale-0 transition-all duration-500"
             />
