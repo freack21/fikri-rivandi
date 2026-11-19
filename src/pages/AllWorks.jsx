@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { resumeData } from '../data';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Lock } from 'lucide-react';
 
 const AllWorks = () => {
   // Scroll to top when the page loads
@@ -40,14 +40,20 @@ const AllWorks = () => {
               </div>
               
               <div className="mt-8">
-                <a 
-                  href={project.link || '#'} 
-                  target={project.link ? "_blank" : "_self"} 
-                  rel="noreferrer"
-                  className="inline-flex items-center text-sm font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors group-hover:text-primary dark:group-hover:text-primary cursor-pointer"
-                >
-                  View Project <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </a>
+                {project.link ? (
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center text-sm font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors group-hover:text-primary dark:group-hover:text-primary cursor-pointer"
+                  >
+                    View Project <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center text-sm font-medium text-gray-400 dark:text-gray-500">
+                    <Lock size={16} className="mr-2" /> Private project
+                  </span>
+                )}
               </div>
             </div>
           ))}
