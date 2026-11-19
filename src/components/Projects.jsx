@@ -4,7 +4,7 @@ import { resumeData } from '../data';
 import { ArrowRight } from 'lucide-react';
 
 const Projects = () => {
-  // Only take the first 4 projects for the featured section
+  // Feature the first 3 projects: one tall card beside two stacked cards
   const featuredProjects = resumeData.projects.slice(0, 3);
 
   return (
@@ -18,12 +18,10 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Masonry-like Grid for Top 4 */}
+        {/* Masonry-like grid: first card spans two rows */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {featuredProjects.map((project, index) => {
-            // Apply different heights/aspect ratios to create a dynamic look like the reference
             const isTall = index === 0;
-            const isWide = index === 3;
             
             return (
               <a 
@@ -31,8 +29,8 @@ const Projects = () => {
                 href={project.link || '#'}
                 target={project.link ? "_blank" : "_self"}
                 rel="noreferrer"
-                className={`group relative rounded-3xl overflow-hidden cursor-pointer block ${isTall ? 'md:row-span-2' : ''} ${isWide ? 'md:col-span-2' : ''}`}
-                style={{ height: isTall ? 'auto' : (isWide ? '400px' : '350px') }}
+                className={`group relative rounded-3xl overflow-hidden cursor-pointer block ${isTall ? 'md:row-span-2' : ''}`}
+                style={{ height: isTall ? 'auto' : '350px' }}
               >
                 <div className="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/40 transition-all duration-300 z-10"></div>
                 
