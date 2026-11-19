@@ -19,7 +19,7 @@ const Experience = () => {
             <div className="space-y-10 pl-2 sm:pl-0 border-l-[4px] border-black dark:border-white sm:border-none relative">
               <div className="hidden sm:block absolute left-4 top-0 bottom-0 w-[4px] bg-black dark:bg-white z-0"></div>
               
-              {resumeData.experiences.map((exp, index) => (
+              {resumeData.experiences.map((exp) => (
                 <div 
                   key={exp.id} 
                   className="brutal-card bg-[#f4f4f0] dark:bg-gray-800 relative z-10 ml-6 sm:ml-12"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { resumeData } from '../data';
-import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const Services = () => {
   const [activeIndex, setActiveIndex] = useState(0);
