@@ -62,16 +62,7 @@ const Hero = () => {
               className="w-full h-full object-cover brutal-border grayscale hover:grayscale-0 transition-all duration-500"
             />
           </div>
-          
-          {/* Floating badge */}
-          <div className="absolute -bottom-6 -left-6 md:left-10 bg-yellow-300 brutal-border brutal-shadow p-4 z-20 transform rotate-6 hover:-rotate-6 transition-transform cursor-default">
-            <div className="text-black font-black text-4xl text-center">
-              +3
-            </div>
-            <div className="text-black font-bold uppercase text-xs text-center border-t-[3px] border-black pt-1 mt-1 tracking-wider">
-              Years Exp.
-            </div>
-          </div>
+
         </div>
         
       </div>
