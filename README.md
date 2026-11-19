@@ -1,16 +1,41 @@
-# React + Vite
+# Fikri Rivandi — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio website for Fikri Rivandi, live at [refandi.my.id](https://refandi.my.id/).
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [React 19](https://react.dev/) with [React Router 7](https://reactrouter.com/)
+- [Vite 8](https://vite.dev/)
+- [Tailwind CSS 4](https://tailwindcss.com/) via `@tailwindcss/vite`
+- [lucide-react](https://lucide.dev/) icons
+- [Oxlint](https://oxc.rs/) for linting
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Requires Node.js (current LTS recommended).
 
-## Expanding the Oxlint configuration
+```bash
+npm ci          # install dependencies
+npm run dev     # start dev server
+npm run lint    # lint sources
+npm run build   # production build to dist/
+npm run preview # preview the production build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Project Structure
+
+```
+public/            Static assets (hero image, project images, CV, robots.txt, sitemap.xml)
+src/
+  data.js          All portfolio content (profile, skills, services, experience, projects)
+  App.jsx          Router and light/dark theme handling
+  pages/           Home (/) and AllWorks (/works)
+  components/      Page sections: Navbar, Hero, About, Services, Experience, Projects, Footer
+  index.css        Tailwind setup, theme tokens, base styles
+```
+
+To update portfolio content, edit `src/data.js`. Project images live in `public/projects/`.
+
+## Deployment
+
+The site builds to static files in `dist/`. See [deploy.md](deploy.md) for serving it with Nginx on an Ubuntu VPS.

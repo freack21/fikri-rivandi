@@ -6,9 +6,13 @@ import Home from './pages/Home';
 import AllWorks from './pages/AllWorks';
 
 function App() {
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || 'light'
-  );
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem('theme') || 'light';
+    } catch {
+      return 'light';
+    }
+  });
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -16,7 +20,14 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark');
     }
-    localStorage.setItem('theme', theme);
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#111827' : '#f4f4f0');
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // Storage unavailable (private mode, blocked cookies); theme still applies for this session.
+    }
   }, [theme]);
 
   const toggleTheme = () => {

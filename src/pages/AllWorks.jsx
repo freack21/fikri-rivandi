@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { resumeData } from '../data';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Lock } from 'lucide-react';
 
 const AllWorks = () => {
   useEffect(() => {
@@ -47,14 +47,20 @@ const AllWorks = () => {
                 </div>
                 
                 <div className="mt-8 self-start">
-                  <a 
-                    href={project.link || '#'} 
-                    target={project.link ? "_blank" : "_self"} 
-                    rel="noreferrer"
-                    className="brutal-btn bg-white dark:bg-black group-hover:bg-primary transition-colors flex items-center"
-                  >
-                    View Project <ExternalLink size={20} className="ml-2" />
-                  </a>
+                  {project.link ? (
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="brutal-btn bg-white dark:bg-black group-hover:bg-primary transition-colors flex items-center"
+                    >
+                      View Project <ExternalLink size={20} className="ml-2" />
+                    </a>
+                  ) : (
+                    <span className="brutal-border bg-gray-200 dark:bg-gray-700 text-black dark:text-white font-bold px-6 py-3 uppercase tracking-widest text-sm inline-flex items-center cursor-not-allowed">
+                      <Lock size={20} className="mr-2" /> Private Project
+                    </span>
+                  )}
                 </div>
               </div>
             )

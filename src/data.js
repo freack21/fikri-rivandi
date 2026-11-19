@@ -103,7 +103,7 @@ export const resumeData = {
       category: "digision.id",
       image: "https://www.vieraoleholeh.id/wp-content/uploads/2024/07/VIERA-ICON.png",
       description: "A comprehensive Enterprise Resource Planning system for the largest souvenir center in Pekanbaru, managing inventory, sales, and operations across 4 different outlets.",
-      link: "#"
+      link: null
     },
     {
       id: 992,
@@ -111,7 +111,7 @@ export const resumeData = {
       category: "digision.id",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO3A31OSS7zxxUP-ZbE3dOtXP-4vJkpTnW0I2guz90CuKOYiIA0dr6jn0&s=10",
       description: "A smart stock management and transaction platform designed for a major building materials store in Pekanbaru, ensuring seamless operations for their wide-reaching loyal customer base.",
-      link: "#"
+      link: null
     },
     {
       id: 993,
@@ -119,11 +119,12 @@ export const resumeData = {
       category: "Intern at PTPN4 Reg. III",
       image: "https://yt3.googleusercontent.com/d3J6SMmi0ArBjRqi2SKmX120v3eE1OwtWMkfQ4tqAhZnSgkVPuntJZ-t_XAHakBGv56MoE75Uw=s900-c-k-c0x00ffffff-no-rj",
       description: "An integrated Human Resource Information System designed for HR personnel to manage enterprise-scale employee data in detail—including grades, positions, training, and certifications—to track performance and drive strategic HR decisions.",
-      link: "#"
+      link: null
     },
     {
       id: 1,
       title: "Pekan Raya Fisika IX Web App",
+      description: "Event web app for HIMAFI Universitas Riau's 'Pekan Raya Fisika IX', built with native PHP: participant registration, a CBT exam system, and an admin dashboard for managing questions, monitoring exams, and reviewing results.",
       category: "Full-Stack Web",
       image: "/projects/prfix.webp",
       link: "https://www.linkedin.com/posts/fikrivandi_webdevelopment-php-javascript-activity-7283396243727294464-0brN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2PERgBpOQWPHoutqrTPfHZ6ctpLuoQwNU"
@@ -131,6 +132,7 @@ export const resumeData = {
     {
       id: 2,
       title: "Bangkit Capstone Project",
+      description: "DiaBite, a Bangkit Academy 2024 team capstone that predicts diabetes risk with a TensorFlow neural network and suggests foods using K-Means clustering on nutrition data.",
       category: "Machine Learning",
       image: "/projects/capstone.webp",
       link: "https://github.com/DiaBite-Bangkit-2024",
@@ -138,6 +140,7 @@ export const resumeData = {
     {
       id: 3,
       title: "Robotics Contest (KRSBI-B)",
+      description: "Autonomous wheeled soccer robot for the KRSBI Beroda division of Kontes Robot Indonesia (KRI) 2024, a robot football contest adapted from the RoboCup Middle Size League. Served as the vision and control programmer.",
       category: "IoT & Robotics",
       image: "/projects/krsbib.webp",
       link: "https://kontesrobotindonesia.id/index.html",
@@ -145,6 +148,7 @@ export const resumeData = {
     {
       id: 4,
       title: "BUMN Enterprise Project",
+      description: "Real-world project delivered during an IT internship at PT Perkebunan Nusantara IV (Persero), a state-owned enterprise.",
       category: "Software Development",
       image: "/projects/ptpn.webp",
       link: "https://www.linkedin.com/posts/fikrivandi_internshipexperience-mbkm-itinternship-activity-7345382136796876800-fl3I?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2PERgBpOQWPHoutqrTPfHZ6ctpLuoQwNU",
@@ -152,6 +156,7 @@ export const resumeData = {
     {
       id: 5,
       title: "TodoApp",
+      description: "Simple task manager for adding, completing, and deleting daily tasks, built with VueJS via CDN.",
       category: "HTML, CSS, VueJS",
       image: "https://placehold.co/600x400/e2e8f0/0f172a?text=TodoApp",
       link: "https://todoapp-lake-three.vercel.app/"
@@ -159,6 +164,7 @@ export const resumeData = {
     {
       id: 6,
       title: "SnakeJS",
+      description: "Classic Snake game in the browser: steer with the arrow keys, eat food to grow, and avoid the walls and your own tail.",
       category: "HTML, JS",
       image: "https://placehold.co/600x400/2563eb/ffffff?text=SnakeJS",
       link: "https://freack21-snakejs.vercel.app/"
@@ -166,13 +172,15 @@ export const resumeData = {
     {
       id: 7,
       title: "Toko Winda Tenun Olshop",
-      category: "Flutter, Firebase",
+      description: "Online shop mobile app for Toko Winda Tenun with product catalog, variations, and checkout, built with Flutter on a Laravel REST API and published on Google Play.",
+      category: "Flutter, Laravel",
       image: "https://placehold.co/600x400/0f172a/ffffff?text=Toko+Winda+Tenun",
       link: "https://play.google.com/store/apps/details?id=com.tokowindatenun.frontend"
     },
     {
       id: 8,
       title: "whatsauto.js",
+      description: "Lightweight WhatsApp automation library built on Baileys, with QR or pairing-code login, rich media messaging, and group management. Published on npm.",
       category: "NodeJS, TypeScript",
       image: "https://placehold.co/600x400/f8fafc/2563eb?text=whatsauto.js",
       link: "https://www.npmjs.com/package/whatsauto.js"
@@ -180,6 +188,7 @@ export const resumeData = {
     {
       id: 9,
       title: "proxy-server",
+      description: "Node.js proxy server built on http-proxy that forwards client requests to a target server, with support for request modification.",
       category: "NodeJS",
       image: "https://placehold.co/600x400/e2e8f0/0f172a?text=proxy-server",
       link: "https://github.com/freack21/proxy-server"
@@ -187,16 +196,26 @@ export const resumeData = {
     {
       id: 10,
       title: "Olist E-Commerce Dashboard",
-      category: "NodeJS",
+      description: "Exploratory analysis of the Olist Brazilian e-commerce dataset covering sales and revenue trends, product category performance, and customer demographics, presented in an interactive Streamlit dashboard.",
+      category: "Python, Streamlit",
       image: "https://placehold.co/600x400/2563eb/ffffff?text=Olist+Dashboard",
       link: "https://github.com/freack21/data_analyst_submission"
     },
     {
       id: 11,
       title: "DragCycle",
-      category: "Java",
+      description: "2D bicycle drag racing desktop game built with Java Swing as a team project, featuring a main menu, difficulty levels, and sound effects.",
+      category: "Java, Swing",
       image: "https://placehold.co/600x400/0f172a/ffffff?text=DragCycle",
       link: "https://github.com/freack21/dragcycle"
+    },
+    {
+      id: 12,
+      title: "PTPN IV Helpdesk Ticketing",
+      description: "IT helpdesk ticketing system for PT Perkebunan Nusantara IV Regional 3, a state-owned enterprise, built with Laravel and Livewire. Features ticket tracking with priorities and technician assignment, category and user management, reports, feedback ratings, and web plus WhatsApp notifications through a Node.js service.",
+      category: "Laravel, Livewire",
+      image: "https://placehold.co/600x400/2563eb/ffffff?text=Helpdesk+Ticketing",
+      link: null
     }
   ]
 };

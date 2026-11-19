@@ -64,6 +64,9 @@ const Navbar = ({ theme, toggleTheme }) => {
           <button 
             className="brutal-border brutal-shadow-sm bg-white dark:bg-gray-800 text-black dark:text-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -72,6 +75,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
       {/* Mobile Nav */}
       <div 
+        id="mobile-nav"
         className={`md:hidden absolute top-full left-0 w-full bg-[#f4f4f0] dark:bg-gray-900 border-b-[3px] border-black dark:border-white flex flex-col py-6 px-6 space-y-4 transition-all duration-300 origin-top shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] ${isMobileMenuOpen ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-0 invisible'}`}
       >
         {navLinks.map((link) => (
