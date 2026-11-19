@@ -146,14 +146,6 @@ export const resumeData = {
       link: "https://kontesrobotindonesia.id/index.html",
     },
     {
-      id: 4,
-      title: "BUMN Enterprise Project",
-      description: "Real-world project delivered during an IT internship at PT Perkebunan Nusantara IV (Persero), a state-owned enterprise.",
-      category: "Software Development",
-      image: "/projects/ptpn.webp",
-      link: "https://www.linkedin.com/posts/fikrivandi_internshipexperience-mbkm-itinternship-activity-7345382136796876800-fl3I?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2PERgBpOQWPHoutqrTPfHZ6ctpLuoQwNU",
-    },
-    {
       id: 5,
       title: "TodoApp",
       description: "Simple task manager for adding, completing, and deleting daily tasks, built with VueJS via CDN.",
