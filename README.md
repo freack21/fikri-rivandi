@@ -40,4 +40,14 @@ To update portfolio content, edit `src/data.js`. Project images live in `public/
 
 ## Deployment
 
-The site builds to static files in `dist/`. See [deploy.md](deploy.md) for serving it with Nginx on an Ubuntu VPS.
+Production runs on the DIGISION Coolify instance, built from the `neo-brutalism` branch with `Dockerfile` and `docker-compose.yml` (nginx serving `dist/` on port 8080). CI deploys every green push to `neo-brutalism`. First-time setup on the server:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/freack21/fikri-rivandi/neo-brutalism/deploy/coolify/setup.sh -o setup.sh
+sudo bash setup.sh check
+sudo bash setup.sh deploy --domain refandi.my.id
+```
+
+See [docs/deploy-coolify.md](docs/deploy-coolify.md) for DNS, tokens, CI secrets and troubleshooting. [deploy.md](deploy.md) describes the older manual Nginx setup on a VPS.
+
+`npm test` runs the Coolify provisioner tests.
