@@ -208,7 +208,8 @@ deploy() {
     resolved=$(getent ahostsv4 "$domain" 2>/dev/null | awk 'NR==1 {print $1}')
     if [ "$resolved" = "$ip" ]; then
       ok "$domain points to this server"
-    elif curl -fsSI --max-time 8 "http://$domain/" 2>/dev/null | grep -qi '^server: cloudflare'; then
+    # No -f: Cloudflare still answers (e.g. 52x) while the origin is down or not yet moved here.
+    elif curl -sSI --max-time 8 "http://$domain/" 2>/dev/null | grep -qi '^server: cloudflare'; then
       ok "$domain is proxied by Cloudflare (orange cloud); make sure its origin is $ip"
     else
       printf '\033[33m! %s resolves to "%s", not this server (%s).\033[0m\n' "$domain" "${resolved:-nothing}" "$ip"
