@@ -26,6 +26,12 @@ const DEFAULTS = {
   appName: "fikri-rivandi",
 };
 const DONE_STATUSES = new Set(["finished", "failed", "cancelled-by-user", "cancelled"]);
+const COMPOSE_LOAD_WAIT_MS = 2 * 60 * 1000;
+
+// Coolify loads docker-compose.yml from Git in a background job after the app is created, and rejects
+// docker_compose_domains until that job has stored docker_compose_raw.
+const isComposeNotLoaded = (err) =>
+  err instanceof ProvisionError && err.status === 422 && JSON.stringify(err.data?.errors ?? "").includes("docker_compose_raw");
 
 export class ProvisionError extends Error {}
 
@@ -66,8 +72,12 @@ function createClient({ baseUrl, token, fetchImpl, sourceHint }) {
       );
     }
     if (!res.ok) {
-      const detail = typeof data === "object" && data ? data.message || JSON.stringify(data.errors || data) : text;
-      throw new ProvisionError(`${method} ${path} failed with HTTP ${res.status}: ${detail}`);
+      let detail = text;
+      if (typeof data === "object" && data) {
+        const errors = data.errors && Object.keys(data.errors).length ? ` ${JSON.stringify(data.errors)}` : "";
+        detail = data.message ? `${data.message}${errors}` : JSON.stringify(data);
+      }
+      throw Object.assign(new ProvisionError(`${method} ${path} failed with HTTP ${res.status}: ${detail}`), { status: res.status, data });
     }
     return data;
   };
@@ -97,7 +107,7 @@ const repoSlug = (url) =>
  */
 export async function provision(
   env,
-  { fetchImpl = fetch, log = console.log, sleep = (ms) => new Promise((r) => setTimeout(r, ms)), pollMs = 5000, timeoutMs = 20 * 60 * 1000 } = {},
+  { fetchImpl = fetch, log = console.log, sleep = (ms) => new Promise((r) => setTimeout(r, ms)), pollMs = 5000, timeoutMs = 20 * 60 * 1000, composeWaitMs = COMPOSE_LOAD_WAIT_MS } = {},
 ) {
   if (!env.COOLIFY_URL || !env.COOLIFY_TOKEN) throw new ProvisionError("COOLIFY_URL and COOLIFY_TOKEN are required.");
   const request = createClient({ baseUrl: env.COOLIFY_URL, token: env.COOLIFY_TOKEN, fetchImpl, sourceHint: env.COOLIFY_SOURCE_HINT });
@@ -106,6 +116,8 @@ export async function provision(
   const projectName = env.PROJECT_NAME || DEFAULTS.project;
   const appName = env.APP_NAME || DEFAULTS.appName;
   const domain = (env.APP_DOMAIN || "").trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+
+  const composeDomains = domain ? [{ name: COMPOSE_SERVICE, domain: `https://${domain}:${CONTAINER_PORT}` }] : null;
 
   log("• Checking API access…");
   const server = pickServer(await request("GET", "/servers"), env.SERVER_UUID);
@@ -131,6 +143,8 @@ export async function provision(
       git_repository: repo,
       git_branch: branch,
       build_pack: "dockercompose",
+      docker_compose_location: "/docker-compose.yml",
+      ...(composeDomains && { docker_compose_domains: composeDomains }),
       name: appName,
       description: "Fikri Rivandi portfolio (static React SPA served by nginx)",
       instant_deploy: false,
@@ -142,8 +156,23 @@ export async function provision(
 
   const patch = { git_branch: branch, docker_compose_location: "/docker-compose.yml" };
   // The port is the container port Traefik routes to; visitors still use https://<domain>.
-  if (domain) patch.docker_compose_domains = [{ name: COMPOSE_SERVICE, domain: `https://${domain}:${CONTAINER_PORT}` }];
-  await request("PATCH", `/applications/${app.uuid}`, patch);
+  if (composeDomains) patch.docker_compose_domains = composeDomains;
+  const composeDeadline = Date.now() + composeWaitMs;
+  for (let waiting = false; ; waiting = true) {
+    try {
+      await request("PATCH", `/applications/${app.uuid}`, patch);
+      break;
+    } catch (err) {
+      if (!isComposeNotLoaded(err)) throw err;
+      if (Date.now() > composeDeadline) {
+        throw new ProvisionError(
+          `Coolify has not loaded /docker-compose.yml for ${appName} yet. Open the application in Coolify, click "Reload Compose File", then run this again.`,
+        );
+      }
+      if (!waiting) log("  waiting for Coolify to load /docker-compose.yml from Git…");
+      await sleep(pollMs);
+    }
+  }
   log(`  compose file /docker-compose.yml, branch ${branch}${domain ? `, domain https://${domain}` : ""}`);
 
   log("• Environment variables…");

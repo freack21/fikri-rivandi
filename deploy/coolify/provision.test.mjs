@@ -3,8 +3,10 @@ import assert from "node:assert/strict";
 import { provision, ProvisionError } from "./provision.mjs";
 
 /** In-memory stand-in for the subset of the Coolify API that provision() uses. */
-function fakeCoolify({ deployStatuses = ["in_progress", "finished"], status = 200 } = {}) {
-  const state = { projects: [], apps: [], envs: {}, patches: [], calls: [] };
+function fakeCoolify({ deployStatuses = ["in_progress", "finished"], status = 200, composeLoadsAfter = 0 } = {}) {
+  // composeLoadsAfter: how many PATCHes with docker_compose_domains are rejected while Coolify's
+  // background LoadComposeFile job has not stored docker_compose_raw yet (real Coolify behaviour).
+  const state = { projects: [], apps: [], envs: {}, patches: [], calls: [], composeRejections: 0 };
   let statuses = [...deployStatuses];
   const json = (code, body) => new Response(JSON.stringify(body), { status: code, headers: { "content-type": "application/json" } });
 
@@ -37,6 +39,16 @@ function fakeCoolify({ deployStatuses = ["in_progress", "finished"], status = 20
       return json(201, { uuid: app.uuid });
     }
     if (init.method === "PATCH" && (m = /^\/applications\/([\w-]+)$/.exec(path))) {
+      if (body.docker_compose_domains && state.composeRejections < composeLoadsAfter) {
+        state.composeRejections += 1;
+        return json(422, {
+          message: "Validation failed.",
+          errors: {
+            docker_compose_domains:
+              "Cannot set docker_compose_domains without docker_compose_raw. Reload the compose file from the git repository first.",
+          },
+        });
+      }
       state.patches.push(body);
       return json(200, { uuid: m[1] });
     }
@@ -67,6 +79,8 @@ test("first run creates the project and app on neo-brutalism, sets the domain an
   assert.equal(state.lastAppBody.name, "fikri-rivandi");
   assert.equal(state.lastAppBody.git_repository, "https://github.com/freack21/fikri-rivandi");
   assert.equal(state.lastAppBody.git_branch, "neo-brutalism");
+  assert.equal(state.lastAppBody.docker_compose_location, "/docker-compose.yml");
+  assert.deepEqual(state.lastAppBody.docker_compose_domains, [{ name: "web", domain: "https://refandi.my.id:8080" }]);
   assert.deepEqual(state.patches[0], {
     git_branch: "neo-brutalism",
     docker_compose_location: "/docker-compose.yml",
@@ -164,4 +178,32 @@ test("an app with the same name but another repository is not reused", async () 
   const result = await provision({ ...base, DEPLOY: "0" }, { fetchImpl, ...quiet });
   assert.notEqual(result.appUuid, "app-other");
   assert.equal(state.apps.length, 2);
+});
+
+test("waits for Coolify to load the compose file before setting the domain", async () => {
+  const { state, fetchImpl } = fakeCoolify({ composeLoadsAfter: 3 });
+  const lines = [];
+  const result = await provision({ ...base, APP_DOMAIN: "refandi.my.id" }, { fetchImpl, ...quiet, log: (l) => lines.push(l) });
+  assert.equal(state.composeRejections, 3);
+  assert.deepEqual(state.patches[0].docker_compose_domains, [{ name: "web", domain: "https://refandi.my.id:8080" }]);
+  assert.equal(lines.filter((l) => l.includes("waiting for Coolify to load")).length, 1);
+  assert.equal(result.deployment.status, "finished");
+});
+
+test("gives up with instructions when the compose file never loads", async () => {
+  const { state, fetchImpl } = fakeCoolify({ composeLoadsAfter: Infinity });
+  await assert.rejects(
+    provision({ ...base, APP_DOMAIN: "refandi.my.id" }, { fetchImpl, ...quiet, composeWaitMs: -1 }),
+    /has not loaded \/docker-compose\.yml.*Reload Compose File/,
+  );
+  assert.ok(!state.calls.some((c) => c.includes("/deploy?")), "nothing is deployed without a domain");
+});
+
+test("other validation errors show Coolify's field errors", async () => {
+  const { fetchImpl } = fakeCoolify();
+  const failing = async (url, init) =>
+    init.method === "PATCH"
+      ? new Response(JSON.stringify({ message: "Validation failed.", errors: { git_branch: "bad branch" } }), { status: 422 })
+      : fetchImpl(url, init);
+  await assert.rejects(provision(base, { fetchImpl: failing, ...quiet }), /HTTP 422: Validation failed\. \{"git_branch":"bad branch"\}/);
 });
