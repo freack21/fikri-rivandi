@@ -1,0 +1,20 @@
+# Deploy with Coolify's "Docker Compose" build pack (see docs/deploy-coolify.md).
+# Coolify replaces SERVICE_URL_WEB_8080 with the domain it routes to port 8080 of this service.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Switch to mirror.gcr.io/library/... if Docker Hub rate-limits the server.
+        NODE_IMAGE: ${NODE_IMAGE:-node:22-alpine}
+        NGINX_IMAGE: ${NGINX_IMAGE:-nginx:stable-alpine}
+    restart: unless-stopped
+    init: true
+    expose:
+      - "8080"
+    environment:
+      # Tells Coolify which container port to route. The value includes ":8080"; the static
+      # site does not use it (canonical/OG URLs are fixed in index.html).
+      SERVICE_URL_WEB_8080: /
+    # Stateless: no volumes. Health check (GET /healthz) comes from the Dockerfile.

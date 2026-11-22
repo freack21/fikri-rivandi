@@ -1,0 +1,11 @@
+**/node_modules
+**/.env
+**/.env.*
+.git
+.github
+dist
+docs
+deploy/coolify
+*.md
+Dockerfile
+docker-compose*.yml
