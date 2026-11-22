@@ -3,10 +3,11 @@ import assert from "node:assert/strict";
 import { provision, ProvisionError } from "./provision.mjs";
 
 /** In-memory stand-in for the subset of the Coolify API that provision() uses. */
-function fakeCoolify({ deployStatuses = ["in_progress", "finished"], status = 200, composeLoadsAfter = 0 } = {}) {
+function fakeCoolify({ deployStatuses = ["in_progress", "finished"], status = 200, composeLoadsAfter = 0, composeLoadsOnDeploy = true } = {}) {
   // composeLoadsAfter: how many PATCHes with docker_compose_domains are rejected while Coolify's
   // background LoadComposeFile job has not stored docker_compose_raw yet (real Coolify behaviour).
-  const state = { projects: [], apps: [], envs: {}, patches: [], calls: [], composeRejections: 0 };
+  // A deployment loads the compose file itself (ApplicationDeploymentJob), unless composeLoadsOnDeploy is false.
+  const state = { projects: [], apps: [], envs: {}, patches: [], calls: [], composeRejections: 0, composeLoaded: false, deploys: 0 };
   let statuses = [...deployStatuses];
   const json = (code, body) => new Response(JSON.stringify(body), { status: code, headers: { "content-type": "application/json" } });
 
@@ -39,7 +40,7 @@ function fakeCoolify({ deployStatuses = ["in_progress", "finished"], status = 20
       return json(201, { uuid: app.uuid });
     }
     if (init.method === "PATCH" && (m = /^\/applications\/([\w-]+)$/.exec(path))) {
-      if (body.docker_compose_domains && state.composeRejections < composeLoadsAfter) {
+      if (body.docker_compose_domains && !state.composeLoaded && state.composeRejections < composeLoadsAfter) {
         state.composeRejections += 1;
         return json(422, {
           message: "Validation failed.",
@@ -58,6 +59,8 @@ function fakeCoolify({ deployStatuses = ["in_progress", "finished"], status = 20
     }
     if (init.method === "GET" && path.startsWith("/deploy?")) return json(405, { message: "This endpoint has changed to a POST request." });
     if (init.method === "POST" && path.startsWith("/deploy?uuid=")) {
+      state.deploys += 1;
+      if (composeLoadsOnDeploy) state.composeLoaded = true;
       statuses = [...deployStatuses];
       return json(200, { deployments: [{ deployment_uuid: "dep-1", resource_uuid: "app-1", message: "queued" }] });
     }
@@ -190,13 +193,39 @@ test("waits for Coolify to load the compose file before setting the domain", asy
   assert.equal(result.deployment.status, "finished");
 });
 
-test("gives up with instructions when the compose file never loads", async () => {
+test("deploys once to load the compose file when Coolify's background loader never finishes", async () => {
   const { state, fetchImpl } = fakeCoolify({ composeLoadsAfter: Infinity });
+  const lines = [];
+  const result = await provision({ ...base, APP_DOMAIN: "refandi.my.id" }, { fetchImpl, ...quiet, composeWaitMs: -1, log: (l) => lines.push(l) });
+
+  assert.equal(state.deploys, 2, "bootstrap deployment, then the real one with the domain");
+  assert.deepEqual(state.patches[0], { git_branch: "neo-brutalism", docker_compose_location: "/docker-compose.yml" });
+  assert.deepEqual(state.patches[1].docker_compose_domains, [{ name: "web", domain: "https://refandi.my.id:8080" }]);
+  const firstDeploy = state.calls.indexOf("POST /deploy?uuid=app-1&force=false");
+  const domainPatch = state.calls.lastIndexOf("PATCH /applications/app-1");
+  assert.ok(firstDeploy < domainPatch && domainPatch < state.calls.lastIndexOf("POST /deploy?uuid=app-1&force=false"));
+  assert.ok(lines.some((l) => l.includes("running a first deployment")));
+  assert.equal(result.deployment.status, "finished");
+});
+
+test("explains what to do when the compose file is still missing after a deployment", async () => {
+  const { state, fetchImpl } = fakeCoolify({ composeLoadsAfter: Infinity, composeLoadsOnDeploy: false });
   await assert.rejects(
     provision({ ...base, APP_DOMAIN: "refandi.my.id" }, { fetchImpl, ...quiet, composeWaitMs: -1 }),
-    /has not loaded \/docker-compose\.yml.*Reload Compose File/,
+    /still has no compose file.*Reload Compose File/,
   );
-  assert.ok(!state.calls.some((c) => c.includes("/deploy?")), "nothing is deployed without a domain");
+  assert.equal(state.deploys, 1);
+});
+
+test("a failed bootstrap deployment is reported", async () => {
+  const { fetchImpl } = fakeCoolify({ composeLoadsAfter: Infinity, deployStatuses: ["failed"] });
+  await assert.rejects(provision({ ...base, APP_DOMAIN: "refandi.my.id" }, { fetchImpl, ...quiet, composeWaitMs: -1 }), /status "failed"/);
+});
+
+test("DEPLOY=0 does not deploy just to load the compose file", async () => {
+  const { state, fetchImpl } = fakeCoolify({ composeLoadsAfter: Infinity });
+  await assert.rejects(provision({ ...base, APP_DOMAIN: "refandi.my.id", DEPLOY: "0" }, { fetchImpl, ...quiet, composeWaitMs: -1 }), /has not loaded/);
+  assert.equal(state.deploys, 0);
 });
 
 test("other validation errors show Coolify's field errors", async () => {

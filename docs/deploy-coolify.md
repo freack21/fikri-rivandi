@@ -58,7 +58,7 @@ The script asks for the Coolify API token (input hidden), then:
 2. downloads `deploy/coolify/provision.mjs` pinned to the current commit of `neo-brutalism` and runs it in a throwaway `node:22-alpine` container;
 3. creates the application `fikri-rivandi` in project **DIGISION-DEV** (the project is created if missing; an existing app is reused and never moved);
 4. sets branch `neo-brutalism`, compose file `/docker-compose.yml` and the domain `https://<domain>:8080` on the `web` service (`:8080` is the container port Traefik routes to; visitors use plain `https://<domain>`);
-5. deploys with `POST /api/v1/deploy` and waits until the build finishes;
+5. deploys with `POST /api/v1/deploy` and waits until the build finishes (on a brand-new app whose compose file Coolify has not loaded yet, it deploys once first to load it, then attaches the domain and deploys again);
 6. prints the site URL and the deploy webhook path.
 
 The token and domain are saved to `/etc/fikri-rivandi/coolify.env` (root-only), so later runs are just `sudo bash setup.sh deploy`. Re-running is safe: it reuses the app and redeploys.
@@ -130,6 +130,7 @@ Set under the application's **Environment Variables** in Coolify, then redeploy.
 | `setup.sh deploy`: `401` | Token mistyped or deleted. Create a new one and run `sudo bash setup.sh deploy --reset` |
 | `405 Method Not Allowed` on deploy | The deploy endpoint is `POST`, not `GET` (the script and CI already use `POST`) |
 | Traefik `404 page not found` | The domain is not attached to the `web` service with its port. It must be `https://<domain>:8080`; re-run `setup.sh deploy --domain <domain>` |
+| `waiting for Coolify to load /docker-compose.yml` then `running a first deployment` | Normal on a new app: Coolify loads the compose file in a background job and rejects the domain until it is done. If that job does not finish within 30 s, the script deploys once (which loads the compose file), attaches the domain and deploys again. If that first deployment fails, its log in **Deployments** shows why the compose file could not be read |
 | Build fails with `429 Too Many Requests` | `sudo bash setup.sh deploy --mirror` |
 | HTTPS error / redirect loop | Cloudflare SSL/TLS must be **Full (strict)**; grey cloud for the first certificate if issuance fails |
 | CI deploy: `Could not resolve host` | `COOLIFY_DEPLOY_WEBHOOK` must start with `https://coolify.digision.dev/` |

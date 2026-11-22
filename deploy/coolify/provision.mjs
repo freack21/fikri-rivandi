@@ -26,7 +26,7 @@ const DEFAULTS = {
   appName: "fikri-rivandi",
 };
 const DONE_STATUSES = new Set(["finished", "failed", "cancelled-by-user", "cancelled"]);
-const COMPOSE_LOAD_WAIT_MS = 2 * 60 * 1000;
+const COMPOSE_LOAD_WAIT_MS = 30 * 1000;
 
 // Coolify loads docker-compose.yml from Git in a background job after the app is created, and rejects
 // docker_compose_domains until that job has stored docker_compose_raw.
@@ -154,26 +154,44 @@ export async function provision(
     log(`  using existing application ${appName} (${app.uuid})`);
   }
 
-  const patch = { git_branch: branch, docker_compose_location: "/docker-compose.yml" };
-  // The port is the container port Traefik routes to; visitors still use https://<domain>.
-  if (composeDomains) patch.docker_compose_domains = composeDomains;
-  const composeDeadline = Date.now() + composeWaitMs;
-  for (let waiting = false; ; waiting = true) {
-    try {
-      await request("PATCH", `/applications/${app.uuid}`, patch);
-      break;
-    } catch (err) {
-      if (!isComposeNotLoaded(err)) throw err;
-      if (Date.now() > composeDeadline) {
-        throw new ProvisionError(
-          `Coolify has not loaded /docker-compose.yml for ${appName} yet. Open the application in Coolify, click "Reload Compose File", then run this again.`,
-        );
-      }
-      if (!waiting) log("  waiting for Coolify to load /docker-compose.yml from Git…");
+  const deploy = async (label) => {
+    log(label);
+    const queued = await request("POST", `/deploy?uuid=${app.uuid}&force=false`);
+    const deploymentUuid = queued?.deployments?.[0]?.deployment_uuid;
+    if (!deploymentUuid) throw new ProvisionError(`Coolify did not start a deployment: ${JSON.stringify(queued)}`);
+    let status = "queued";
+    const deadline = Date.now() + timeoutMs;
+    while (!DONE_STATUSES.has(status)) {
+      if (Date.now() > deadline) throw new ProvisionError(`Deployment ${deploymentUuid} is still "${status}"; check it in the Coolify dashboard.`);
       await sleep(pollMs);
+      const deployment = await request("GET", `/deployments/${deploymentUuid}`);
+      if (deployment?.status && deployment.status !== status) log(`  status: ${deployment.status}`);
+      status = deployment?.status ?? status;
     }
-  }
-  log(`  compose file /docker-compose.yml, branch ${branch}${domain ? `, domain https://${domain}` : ""}`);
+    if (status !== "finished") {
+      throw new ProvisionError(
+        `Deployment ${deploymentUuid} ended with status "${status}". Open the application's Deployments tab in Coolify for the build log.`,
+      );
+    }
+    return { uuid: deploymentUuid, status };
+  };
+
+  // PATCHes the app, waiting while Coolify still rejects docker_compose_domains because its background
+  // job has not loaded the compose file. Returns false if it is still not loaded after `waitMs`.
+  const patchApp = async (body, waitMs) => {
+    const until = Date.now() + waitMs;
+    for (let waiting = false; ; waiting = true) {
+      try {
+        await request("PATCH", `/applications/${app.uuid}`, body);
+        return true;
+      } catch (err) {
+        if (!isComposeNotLoaded(err)) throw err;
+        if (Date.now() > until) return false;
+        if (!waiting) log("  waiting for Coolify to load /docker-compose.yml from Git…");
+        await sleep(pollMs);
+      }
+    }
+  };
 
   log("• Environment variables…");
   const envs = [];
@@ -186,32 +204,37 @@ export async function provision(
     log("  nothing to change");
   }
 
+  log("• Compose settings…");
+  const settings = { git_branch: branch, docker_compose_location: "/docker-compose.yml" };
+  // The port is the container port Traefik routes to; visitors still use https://<domain>.
+  const withDomain = composeDomains ? { ...settings, docker_compose_domains: composeDomains } : settings;
   const result = {
     appUuid: app.uuid,
     url: domain ? `https://${domain}` : null,
     webhookPath: `/api/v1/deploy?uuid=${app.uuid}&force=false`,
     deployment: null,
   };
+
+  if (!(await patchApp(withDomain, composeWaitMs))) {
+    // Coolify's background compose loader did not finish (it can fail silently). A deployment loads the
+    // compose file itself and logs any error, so deploy once without the domain, then attach it.
+    await patchApp(settings, 0);
+    if (env.DEPLOY === "0") {
+      throw new ProvisionError(
+        `Coolify has not loaded /docker-compose.yml for ${appName} yet. Run again without DEPLOY=0, or click "Reload Compose File" in Coolify.`,
+      );
+    }
+    await deploy("  compose file not loaded yet: running a first deployment to load it…");
+    if (!(await patchApp(withDomain, composeWaitMs))) {
+      throw new ProvisionError(
+        `Coolify still has no compose file for ${appName} after a successful deployment. Open the application in Coolify, click "Reload Compose File", then run this again.`,
+      );
+    }
+  }
+  log(`  compose file /docker-compose.yml, branch ${branch}${domain ? `, domain https://${domain}` : ""}`);
+
   if (env.DEPLOY === "0") return result;
-
-  log("• Deploying (the first build takes a few minutes)…");
-  const queued = await request("POST", `/deploy?uuid=${app.uuid}&force=false`);
-  const deploymentUuid = queued?.deployments?.[0]?.deployment_uuid;
-  if (!deploymentUuid) throw new ProvisionError(`Coolify did not start a deployment: ${JSON.stringify(queued)}`);
-
-  let status = "queued";
-  const deadline = Date.now() + timeoutMs;
-  while (!DONE_STATUSES.has(status)) {
-    if (Date.now() > deadline) throw new ProvisionError(`Deployment ${deploymentUuid} is still "${status}"; check it in the Coolify dashboard.`);
-    await sleep(pollMs);
-    const deployment = await request("GET", `/deployments/${deploymentUuid}`);
-    if (deployment?.status && deployment.status !== status) log(`  status: ${deployment.status}`);
-    status = deployment?.status ?? status;
-  }
-  result.deployment = { uuid: deploymentUuid, status };
-  if (status !== "finished") {
-    throw new ProvisionError(`Deployment ${deploymentUuid} ended with status "${status}". Open the application's Deployments tab in Coolify for the build log.`);
-  }
+  result.deployment = await deploy("• Deploying (the first build takes a few minutes)…");
   return result;
 }
 
